@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.MainPageController">
+    <children>
+        <HBox prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D2F1CF;">
+         <children>
+            <VBox prefHeight="700.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="140.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="logoBtn" prefHeight="66.0" prefWidth="66.0" text=" ">
+                           <VBox.margin>
+                              <Insets left="50.0" top="38.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="80.0" prefHeight="70.0" prefWidth="200.0" />
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="usrGesBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Gestion des utilisateurs" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="80.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="equipGesBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Gestion des équipements" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="151.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="signalPanBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Signalement des pannes" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="221.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="intervGesBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Gestion des interventions" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="292.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="equipGesBtn1" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Rapports et statistiques" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="362.0" prefHeight="70.0" prefWidth="200.0" />
+                  <VBox layoutX="10.0" layoutY="573.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="exitBtn" prefHeight="34.0" prefWidth="125.0" text="Déconnexion">
+                           <VBox.margin>
+                              <Insets left="75.0" top="15.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children></HBox>
+        <HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" />
+    </children>
+</HBox>
