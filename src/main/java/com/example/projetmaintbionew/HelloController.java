@@ -1,5 +1,7 @@
 package com.example.projetmaintbionew;
 
+import animations.Shaker;
+import databaseHelper.DBHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,9 +20,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
+
+    private int userId;
 
     @FXML
     private JFXButton btnAdm;
@@ -67,5 +73,71 @@ public class HelloController implements Initializable {
             }
         });
 
+        btnCo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+                String loginText = usrN.getText().trim();
+                String loginPwd = usrPwd.getText().trim();
+
+                Utilisateur user = new Utilisateur();
+                user.setNom(loginText);
+                user.setCode(loginPwd);
+
+                ResultSet userRow = DBHandler.getUser(user);
+
+                int counter = 0;
+
+                try {
+                    while (userRow.next()) {
+                        counter++;
+                        String name = userRow.getString("name");
+                        userId = userRow.getInt("iduser");
+                        System.out.println("Welcome! " + name);
+
+                    }
+
+                    if (counter == 1) {
+                        showAddItemScreen();
+                    }else {
+                        Shaker userNameShaker = new Shaker(usrN);
+                        Shaker passwordShaker = new Shaker(usrPwd);
+                        passwordShaker.shake();
+                        userNameShaker.shake();
+
+                    }
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+
+
+    }
+
+    private void showAddItemScreen() {
+
+        btnCo.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("mainPageView.fxml"));
+
+        try {
+            loader.setRoot(loader.getRoot());
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+
+            /*AddItemController addItemController = loader.getController();
+            addItemController.setUserId(userId);*/
+
+        stage.showAndWait();
     }
 }

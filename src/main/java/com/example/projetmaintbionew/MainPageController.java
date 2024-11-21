@@ -2,12 +2,17 @@ package com.example.projetmaintbionew;
 
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -79,5 +84,18 @@ public class MainPageController implements Initializable {
         signalPanBtn.setGraphic(iconView5);
         signalPanBtn.setMinWidth(197);
         signalPanBtn.setMinHeight(34);
+
+        usrGesBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    change.getChildren().clear();
+                    change.getChildren().add((Node) FXMLLoader.load(getClass().getResource("gestionUtilisateurView.fxml")));
+                    //changePane.setVisible(true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 }

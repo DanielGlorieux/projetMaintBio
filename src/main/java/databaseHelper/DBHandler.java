@@ -1,10 +1,12 @@
 package databaseHelper;
+import com.example.projetmaintbionew.Utilisateur;
+
 import java.sql.*;
 
 public class DBHandler extends Configuration{
-    Connection dbConnection;
+    static Connection dbConnection;
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://"+dbHost + ":"
                 + dbPort + "/" + dbName;
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,6 +43,40 @@ public class DBHandler extends Configuration{
 
         }
 
+    }
+
+
+    public static ResultSet getUser(Utilisateur user) {
+        ResultSet resultSet = null;
+
+
+        if (!user.getNom().equals("") || !user.getCode().equals("")) {
+            String query = "SELECT * FROM " + Constantes.USER_TABLE + " WHERE "
+                    + Constantes.USER_NAME + "=?" + " AND " + Constantes.USER_PASSWORD
+                    + "=?";
+
+            // select all from users where username="paulo" and password="password"
+
+            try {
+                PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+                preparedStatement.setString(1, user.getNom());
+                preparedStatement.setString(2, user.getCode());
+
+                resultSet = preparedStatement.executeQuery();
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+            System.out.println("Please enter your credentials");
+
+        }
+        return resultSet;
     }
 
     // Ajout de membre

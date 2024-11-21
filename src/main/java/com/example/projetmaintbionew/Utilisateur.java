@@ -1,14 +1,14 @@
 package com.example.projetmaintbionew;
 
-public class Utulisateur {
+public class Utilisateur {
     private String nom;
     private String code;
     private String prof;
 
-    public Utulisateur() {
+    public Utilisateur() {
     }
 
-    public Utulisateur(String nom, String code, String prof) {
+    public Utilisateur(String nom, String code, String prof) {
         this.nom = nom;
         this.code = code;
         this.prof = prof;
