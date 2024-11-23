@@ -135,8 +135,8 @@ public class HelloController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
-            /*AddItemController addItemController = loader.getController();
-            addItemController.setUserId(userId);*/
+        MainPageController mainPageController = loader.getController();
+        mainPageController.setUserId(userId);
 
         stage.showAndWait();
     }

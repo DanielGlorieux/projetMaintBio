@@ -1,4 +1,5 @@
 package databaseHelper;
+import com.example.projetmaintbionew.Equipement;
 import com.example.projetmaintbionew.Utilisateur;
 
 import java.sql.*;
@@ -14,36 +15,61 @@ public class DBHandler extends Configuration{
         return dbConnection;
     }
 
-    // Methode d'écriture dans la base
-    // Ajout de livre
-    public void addUser(String nom, String mdp, String profile){
+    public static void addUser(Utilisateur user) {
+        String insert = "INSERT INTO " + Constantes.USER_TABLE + "(" + Constantes.USER_NAME
+                + "," + Constantes.USER_PASSWORD + "," + Constantes.USER_PROFILE + ")" + "VALUES(?,?,?)";
 
-        if ( !nom.equals("") && !mdp.equals("")
-                && !profile.equals("") ){
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
 
-            String insert = "INSERT INTO " + Constantes.USER_TABLE + "("
-                    + Constantes.USER_NAME + ","
-                    + Constantes.USER_PASSWORD + "," + Constantes.USER_PROFILE + ") " + "VALUES(?,?,?)";
+            preparedStatement.setString(1, user.getNom());
+            preparedStatement.setString(2, user.getCode());
+            preparedStatement.setString(3, user.getProf());
 
-            try {
-                PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-                preparedStatement.setString(1,nom);
-                preparedStatement.setString(2,mdp);
-                preparedStatement.setString(3,profile);
+            preparedStatement.executeUpdate();
 
-
-                preparedStatement.executeUpdate();
-
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-
     }
+
+    // Methode d'écriture dans la base
+    // Ajout d'un equipement
+
+    public static void addEquipment(Equipement equip) {
+
+        String insert = "INSERT INTO " + Constantes.EQUIPMENT_TABLE + " ( " + Constantes.USER_ID + ","
+                + Constantes.EQUIPMENT_DESIGNATION + "," + Constantes.EQUIPMENT_MARQUE + "," + Constantes.EQUIPMENT_MODELE + "," +
+                Constantes.EQUIPMENT_NUMSERIE + "," + Constantes.EQUIPMENT_ANNEACQUIS + "," + Constantes.EQUIPMENT_ANNESERV + "," +
+                Constantes.EQUIPMENT_SOURCEACQUIS + "," + Constantes.EQUIPMENT_ETAT + "," + Constantes.EQUIPMENT_SERVICE + "," + Constantes.EQUIPMENT_SALLEAFF +")"
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+
+            preparedStatement.setInt(1, equip.getUserId());
+            preparedStatement.setString(2, equip.getDesignation());
+            preparedStatement.setString(3, equip.getMarque());
+            preparedStatement.setString(4, equip.getModel());
+            preparedStatement.setString(5, equip.getNumserie());
+            preparedStatement.setTimestamp(6, equip.getAnneAcquis());
+            preparedStatement.setInt(7, equip.getAnneMisServ());
+            preparedStatement.setString(8, equip.getSourceAcquis());
+            preparedStatement.setString(9, equip.getEtat());
+            preparedStatement.setString(10, equip.getService());
+            preparedStatement.setString(11, equip.getSalleAff());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static ResultSet getUser(Utilisateur user) {
@@ -77,6 +103,20 @@ public class DBHandler extends Configuration{
 
         }
         return resultSet;
+    }
+
+    public static void updateUser(Utilisateur user) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE user SET password=?, profile=? WHERE name=?";
+
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setString(1, user.getCode());
+        preparedStatement.setString(2, user.getProf());
+        preparedStatement.setString(3, user.getNom());
+        // preparedStatement.setInt(4, userId);
+        //preparedStatement.setInt(4, taskId);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
 
     // Ajout de membre

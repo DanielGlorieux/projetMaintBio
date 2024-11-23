@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.ModifierUtilisateurController">
+    <children>
+        <VBox prefHeight="240.0" prefWidth="802.0">
+         <children>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </VBox.margin>
+            </TableView>
+         </children></VBox>
+        <VBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="802.0">
+            <children>
+                <JFXTextField fx:id="nameUsr" focusColor="#144e25" prefHeight="34.0" promptText="Entrer le nom d’utilisateur à modifier" unFocusColor="#4059a9">
+                    <padding>
+                        <Insets left="125.0" right="125.0" />
+                    </padding>
+                    <font>
+                        <Font name="Inter Regular" size="15.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </JFXTextField>
+            </children>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="802.0">
+            <children>
+                <MenuButton fx:id="newProfileUsr" mnemonicParsing="false" prefHeight="34.0" prefWidth="260.0" style="-fx-background-color: #144E25;" text="Définissez le nouveau profil de l'utilisateur" textFill="WHITE">
+                    <items>
+                        <MenuItem fx:id="miProfUtili" mnemonicParsing="false" text="Utilisateur" />
+                        <MenuItem fx:id="miProfTI" mnemonicParsing="false" text="Technicien_intervenant" />
+                        <MenuItem fx:id="miProfTC" mnemonicParsing="false" text="Technicien_chef" />
+                        <MenuItem fx:id="miProfAdm" mnemonicParsing="false" text="Administrateur" />
+                    </items>
+                    <VBox.margin>
+                        <Insets left="122.0" top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="13.3" />
+                    </font>
+                </MenuButton>
+            </children>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="250.0" prefHeight="60.0" prefWidth="802.0">
+            <children>
+                <JFXPasswordField fx:id="newPwdUsr" prefHeight="34.0" promptText="Entrer le nouveau mot de passe" unFocusColor="#144e25">
+                    <padding>
+                        <Insets left="125.0" right="125.0" />
+                    </padding>
+                    <font>
+                        <Font name="Inter Regular" size="15.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+                </JFXPasswordField>
+            </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="370.0" prefHeight="90.0" prefWidth="802.0">
+            <children>
+                <JFXButton fx:id="btnUpDUsr" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Modifier" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="325.0" top="40.0" />
+                    </VBox.margin>
+                </JFXButton>
+            </children>
+        </VBox>
+    </children>
+</VBox>

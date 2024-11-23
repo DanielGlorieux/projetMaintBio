@@ -19,7 +19,7 @@
                   <HBox layoutX="124.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="140.0">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="142.0" text="Gestion des utilisateurs">
+                        <Label prefHeight="38.0" prefWidth="142.0" text="Gestion des utilisateurs" underline="true">
                            <font>
                               <Font size="13.4" />
                            </font>
@@ -45,15 +45,23 @@
                         <Font size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="100.0" top="15.0" />
+                        <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="deleteUsrBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Supprimer un utilisateur" textFill="WHITE">
+                  <JFXButton fx:id="modUsrBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Modifier un utilisateur" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="200.0" top="15.0" />
+                        <Insets left="50.0" top="15.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="deleteUsrBtn" layoutX="60.0" layoutY="25.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Supprimer un utilisateur" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </JFXButton>
                </children>

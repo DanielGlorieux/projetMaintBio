@@ -2,12 +2,28 @@ package databaseHelper;
 
 public class Constantes {
     public static final String USER_TABLE = "user";
+    public static final String EQUIPMENT_TABLE = "equipment";
 
     // Les noms des colones
     public static final String USER_ID = "iduser";
     public static final String USER_NAME = "name";
     public static final String USER_PASSWORD = "password";
     public static final String USER_PROFILE = "profile";
+
+
+
+    //Equipement Table Column Names
+    public static final String EQUIPMENT_ID = "idequipment";
+    public static final String EQUIPMENT_DESIGNATION = "designation";
+    public static final String EQUIPMENT_MARQUE = "marque";
+    public static final String EQUIPMENT_MODELE = "modele";
+    public static final String EQUIPMENT_NUMSERIE = "num_serie";
+    public static final String EQUIPMENT_ANNEACQUIS = "annee_acquis";
+    public static final String EQUIPMENT_ANNESERV = "annee_mise_serv";
+    public static final String EQUIPMENT_SOURCEACQUIS = "source_acquis";
+    public static final String EQUIPMENT_ETAT = "etat";
+    public static final String EQUIPMENT_SERVICE = "service";
+    public static final String EQUIPMENT_SALLEAFF = "salle_aff";
 
 //    public static final String LIVRE_ISBN = "isbn";
 //    public static final String LIVRE_ANNEEPUB = "anneePub";
