@@ -119,6 +119,37 @@ public class DBHandler extends Configuration{
         preparedStatement.close();
     }
 
+    public static ResultSet getEquipment() {
+
+        ResultSet resultEquipment = null;
+
+        String query = "SELECT * FROM " + Constantes.EQUIPMENT_TABLE;
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+
+            resultEquipment = preparedStatement.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        return resultEquipment;
+    }
+
+    public void deleteEquipment(int equipmentId) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM " + Constantes.EQUIPMENT_TABLE + " WHERE "+
+                Constantes.EQUIPMENT_ID + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setInt(1, equipmentId);
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
     // Ajout de membre
     /*public void ajoutMembre(String nom, String prenom, String mail,
                            String contact, String adresse){

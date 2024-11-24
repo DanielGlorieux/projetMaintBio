@@ -6,13 +6,16 @@ import databaseHelper.DBHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -200,6 +203,19 @@ public class GestionEquipementController implements Initializable {
 
                 }
 
+            }
+        });
+
+        updEquipMenuBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    changeP.getChildren().clear();
+                    changeP.getChildren().add((Node)FXMLLoader.load(getClass().getResource("listEquipementView.fxml")) );
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
