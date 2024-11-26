@@ -5,6 +5,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -21,11 +23,14 @@
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="200.0" />
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="200.0">
                            <children>
-                              <JFXButton fx:id="logoBtn" prefHeight="66.0" prefWidth="66.0" text=" ">
+                              <ImageView fx:id="logoImg" fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="65.0" top="5.0" />
+                                    <Insets left="65.0" top="10.0" />
                                  </HBox.margin>
-                              </JFXButton>
+                                 <image>
+                                    <Image url="@../../../logoMaintBio1.png" />
+                                 </image>
+                              </ImageView>
                            </children></HBox>
                         <HBox layoutX="210.0" layoutY="10.0" prefHeight="77.0" prefWidth="200.0" />
                         <HBox layoutX="410.0" layoutY="10.0" prefHeight="77.0" prefWidth="200.0">
@@ -56,7 +61,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="88.0" prefHeight="100.0" prefWidth="1000.0">
+            <VBox fx:id="logoBtn" layoutX="10.0" layoutY="88.0" prefHeight="100.0" prefWidth="1000.0">
                <children>
                   <JFXTextField fx:id="usrN" focusColor="#144e25" prefHeight="34.0" promptText="Entrer votre nom d’utilisateur" unFocusColor="#4059a9">
                      <padding>

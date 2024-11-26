@@ -209,10 +209,36 @@ public class GestionEquipementController implements Initializable {
         updEquipMenuBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                try {
+                /*try {
                     changeP.getChildren().clear();
                     changeP.getChildren().add((Node)FXMLLoader.load(getClass().getResource("listEquipementView.fxml")) );
 
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }*/
+
+                /*try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("listEquipementView.fxml"));
+                    Node uptEquipementView = loader.load();
+                    UpdateEquipmentFormController  updtEquipementController = loader.getController();
+                    updtEquipementController.setUserId(userId);
+
+                    changeP.getChildren().clear();
+                    changeP.getChildren().add(uptEquipementView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }*/
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("listEquipementView.fxml"));
+                    Node listEquipementView = loader.load();
+
+                    // Pass user ID to ListEquipementController
+                    ListEquipementController listEquipementController = loader.getController();
+                    listEquipementController.setUserId(userId); // Use the userId from GestionEquipementController
+
+                    changeP.getChildren().clear();
+                    changeP.getChildren().add(listEquipementView);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

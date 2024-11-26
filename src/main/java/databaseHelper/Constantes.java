@@ -25,6 +25,14 @@ public class Constantes {
     public static final String EQUIPMENT_SERVICE = "service";
     public static final String EQUIPMENT_SALLEAFF = "salle_aff";
 
+
+    public static final String PANE_TABLE = "panne";
+
+    // Les noms des colones
+    public static final String PANE_ID = "idpanne";
+    public static final String PANE_DESCRIPTION = "description";
+    public static final String PANE_IDUSER = "idUser";
+
 //    public static final String LIVRE_ISBN = "isbn";
 //    public static final String LIVRE_ANNEEPUB = "anneePub";
 //    public static final String LIVRE_NBCOPIEDISP = "nbCopieDisp";

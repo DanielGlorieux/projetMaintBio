@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.UpdateEquipmentFormController">
+   <children>
+      <JFXTextField fx:id="modDesignationTf" focusColor="#144e25" layoutY="77.0" prefHeight="34.0" prefWidth="600.0" promptText="Désignation" unFocusColor="#4059a9" AnchorPane.topAnchor="20.0">
+         <padding>
+            <Insets left="80.0" right="80.0" />
+         </padding>
+         <font>
+            <Font name="Inter Regular" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="modMarqueTf" focusColor="#144e25" layoutY="77.0" prefHeight="34.0" prefWidth="600.0" promptText="Marque" unFocusColor="#4059a9" AnchorPane.topAnchor="120.0">
+         <padding>
+            <Insets left="80.0" right="80.0" />
+         </padding>
+         <font>
+            <Font name="Inter Regular" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="modModeleTf" focusColor="#144e25" layoutY="77.0" prefHeight="34.0" prefWidth="600.0" promptText="Modèle" unFocusColor="#4059a9" AnchorPane.topAnchor="70.0">
+         <padding>
+            <Insets left="80.0" right="80.0" />
+         </padding>
+         <font>
+            <Font name="Inter Regular" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="modNumbseriTf" focusColor="#144e25" prefHeight="34.0" prefWidth="600.0" promptText="Numéro de série" unFocusColor="#4059a9" AnchorPane.topAnchor="170.0">
+         <padding>
+            <Insets left="80.0" right="80.0" />
+         </padding>
+         <font>
+            <Font name="Inter Regular" size="15.0" />
+         </font>
+      </JFXTextField>
+      <DatePicker fx:id="modAnneServiceTf" prefHeight="28.0" prefWidth="218.0" promptText="Annee de mise en service" style="-fx-background-color: #144E25;" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="220.0" />
+      <MenuButton fx:id="modSrcAcquisMb" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Source d'acquisition" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="260.0">
+         <items>
+            <MenuItem fx:id="miSourceAcquisFondP" mnemonicParsing="false" text="Fonds propre" />
+            <MenuItem fx:id="miSourceAcquisEtat" mnemonicParsing="false" text="Etat" />
+            <MenuItem fx:id="miSourceAcquisPart" mnemonicParsing="false" text="Partenaire" />
+         </items>
+         <font>
+            <Font size="13.3" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="modEtatEquipMb" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Etat de l'équipement" textFill="WHITE" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="260.0">
+         <items>
+            <MenuItem fx:id="miEtatEquipBon" mnemonicParsing="false" text="Bon" />
+            <MenuItem fx:id="miEtatEquipPass" mnemonicParsing="false" text="Passable" />
+            <MenuItem fx:id="miEtatEquipMauv" mnemonicParsing="false" text="Mauvais" />
+         </items>
+         <font>
+            <Font size="13.3" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="modServAffMb" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Service d'affectation" textFill="WHITE" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="305.0">
+         <items>
+            <MenuItem fx:id="miServAffLabo" mnemonicParsing="false" text="Laboratoire de biologie médicale" />
+            <MenuItem fx:id="miServAffImg" mnemonicParsing="false" text="Imagerie médicale" />
+            <MenuItem fx:id="miServAffUrg" mnemonicParsing="false" text="Urgences médicales et chirurgicales" />
+            <MenuItem fx:id="miServAffBlocOp" mnemonicParsing="false" text="Bloc Opératoire" />
+            <MenuItem fx:id="miServAffMat" mnemonicParsing="false" text="Maternité" />
+            <MenuItem fx:id="miServAffPed" mnemonicParsing="false" text="Pédiatrie" />
+         </items>
+         <font>
+            <Font size="13.3" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="modSalleAffMb" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Salle d'affectation" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="305.0">
+         <items>
+            <MenuItem fx:id="miSalleAff1" mnemonicParsing="false" text="Salle1" />
+            <MenuItem fx:id="miSalleAff2" mnemonicParsing="false" text="Salle2" />
+            <MenuItem fx:id="miSalleAff3" mnemonicParsing="false" text="Salle3" />
+            <MenuItem fx:id="miSalleAff4" mnemonicParsing="false" text="Salle4" />
+            <MenuItem fx:id="miSalleAff5" mnemonicParsing="false" text="Salle5" />
+         </items>
+         <font>
+            <Font size="13.3" />
+         </font>
+      </MenuButton>
+      <JFXButton fx:id="modBtnAddValidate" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="modifier" textFill="WHITE" AnchorPane.leftAnchor="225.0" AnchorPane.topAnchor="360.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

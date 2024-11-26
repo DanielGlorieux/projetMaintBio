@@ -41,7 +41,7 @@ public class HelloController implements Initializable {
     private JFXPasswordField usrPwd;
 
     @FXML
-    private JFXButton logoBtn;
+    private ImageView logoImg;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,9 +50,9 @@ public class HelloController implements Initializable {
         ImageView iconView1 = new ImageView(icon1);
         iconView1.setFitWidth(65);
         iconView1.setFitHeight(65);
-        logoBtn.setGraphic(iconView1);
+        /*logoBtn.setGraphic(iconView1);
         logoBtn.setMinWidth(66);
-        logoBtn.setMinHeight(66);
+        logoBtn.setMinHeight(66);*/
 
         btnAdm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -63,12 +63,15 @@ public class HelloController implements Initializable {
                     Parent root = FXMLLoader.load(getClass().getResource("adminPageView.fxml"));
                     Scene scene = new Scene(root);
                     stage.setTitle("MaintBio");
+
                     //Image ic = new Image(getClass().getResource("/logo.png").toExternalForm());
                     //stage.getIcons().add(ic);
                     stage.setScene(scene);
                 }catch (IOException e){
                     System.out.println(e);
                 }
+                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+                stage.getIcons().add(ic);
                 stage.show();
             }
         });
@@ -137,6 +140,9 @@ public class HelloController implements Initializable {
 
         MainPageController mainPageController = loader.getController();
         mainPageController.setUserId(userId);
+
+        Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+        stage.getIcons().add(ic);
 
         stage.showAndWait();
     }

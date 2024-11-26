@@ -1,5 +1,6 @@
 package databaseHelper;
 import com.example.projetmaintbionew.Equipement;
+import com.example.projetmaintbionew.Panne;
 import com.example.projetmaintbionew.Utilisateur;
 
 import java.sql.*;
@@ -148,6 +149,44 @@ public class DBHandler extends Configuration{
         preparedStatement.setInt(1, equipmentId);
         preparedStatement.execute();
         preparedStatement.close();
+    }
+
+    public void updateEquipment(String designation, String model, String marque, String numSer, int equipId) throws SQLException, ClassNotFoundException {
+
+        String query = "UPDATE equipment SET designation=?, modele=?, marque=?, num_serie=? WHERE idequipment=?";
+
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setString(1, designation);
+        preparedStatement.setString(2, model);
+        preparedStatement.setString(3, marque);
+        preparedStatement.setString(4, numSer);
+        preparedStatement.setInt(5, equipId);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+
+    }
+
+
+
+    public static void addPane(Panne panne) {
+        String insert = "INSERT INTO panne (idequipment, description, idUser) VALUES (?, ?, ?)";
+        try {
+            Connection conn = getDbConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(insert);
+            preparedStatement.setInt(1, panne.getEquipmentId());
+            preparedStatement.setString(2, panne.getDescription());
+            preparedStatement.setInt(3, panne.getIdUser());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+        } catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Class not found: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     // Ajout de membre

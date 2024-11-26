@@ -50,31 +50,15 @@
                               <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="25.0" top="15.0" />
+                              <Insets left="80.0" top="15.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="updEquipMenuBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Modifier un équipement" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="updEquipMenuBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Gérer les équipements" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="25.0" top="15.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="deleteEquipMenuBtn" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Supprimer un équipement" textFill="WHITE" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" top="15.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="visEquipMenuBtn" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Visualiser les équipement" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" right="25.0" top="15.0" />
+                              <Insets left="300.0" top="15.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>

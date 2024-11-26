@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.SignalPaneController">
+   <children>
+      <JFXTextArea fx:id="desripPanneTa" focusColor="#144e25" layoutX="30.0" layoutY="46.0" prefHeight="115.0" prefWidth="540.0" promptText="Décrire la panne" unFocusColor="#4059a9">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextArea>
+      <JFXButton fx:id="btnSignal1" layoutX="233.0" layoutY="296.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Signaler" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

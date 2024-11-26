@@ -3,6 +3,7 @@ package com.example.projetmaintbionew;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,8 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 720);
         stage.setTitle("MaintBio");
+        Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+        stage.getIcons().add(ic);
         stage.setScene(scene);
         stage.show();
     }

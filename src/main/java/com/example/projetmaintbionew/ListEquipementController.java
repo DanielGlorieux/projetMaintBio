@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class ListEquipementController implements Initializable {
 
+    private static int userId;
+
     @FXML
     private JFXListView<Equipement> listEquip;
     private ObservableList<Equipement> equipmts;
@@ -63,7 +65,12 @@ public class ListEquipementController implements Initializable {
         }
 
         listEquip.setItems(equipmts);
-        listEquip.setCellFactory(cellEquipementController -> new cellEquipementController());
+
+        listEquip.setCellFactory(cellEquipement -> {
+            cellEquipementController cellController = new cellEquipementController();
+            cellController.setUserId(userId); // Pass userId to the cell controller
+            return cellController;
+        });
     }
 
     private void loadEquipments() throws SQLException {
@@ -80,6 +87,17 @@ public class ListEquipementController implements Initializable {
 
             equipmts.add(equipmt); // Corrected to add instead of addAll
         }
+    }
+
+    public int getUserId() {
+        //System.out.println("from getUserId() " + userId);
+
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+        //System.out.println("User ID set in ListEquipementController: " + this.userId);
     }
 
 }

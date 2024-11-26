@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,11 +21,14 @@
                <children>
                   <VBox prefHeight="140.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="logoBtn" prefHeight="66.0" prefWidth="66.0" text=" " VBox.vgrow="ALWAYS">
+                        <ImageView fx:id="logoBtn1" fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
                               <Insets left="68.0" top="38.0" />
                            </VBox.margin>
-                        </JFXButton>
+                           <image>
+                              <Image url="@../../../logoMaintBio1.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="80.0" prefHeight="70.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
@@ -39,15 +44,6 @@
                   <VBox layoutX="10.0" layoutY="80.0" prefHeight="70.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="equipGesBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Gestion des équipements" textFill="WHITE" VBox.vgrow="ALWAYS">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="151.0" prefHeight="70.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <JFXButton fx:id="signalPanBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Signalement des pannes" textFill="WHITE" VBox.vgrow="ALWAYS">
                            <font>
                               <Font size="15.0" />
                            </font>

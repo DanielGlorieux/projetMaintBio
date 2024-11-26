@@ -5,18 +5,23 @@ import databaseHelper.DBHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class cellEquipementController extends JFXListCell<Equipement> implements Initializable {
 
-
+    private int userId;
     @FXML
     private Label EquipmentLabel;
 
@@ -43,6 +48,9 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
 
     @FXML
     private Label serviceLabel;
+
+    @FXML
+    private ImageView signPanneBtn;
 
     private FXMLLoader fxmlLoader;
 
@@ -82,12 +90,176 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
 
             int equipmtId = myEquipmt.getEquipmentId();
 
+            UpdtBtn.setOnMouseClicked(event -> {
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("updateEquipmentFormView.fxml"));
+
+
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+
+                UpdateEquipmentFormController updateEquipmentController = loader.getController();
+                updateEquipmentController.setModDesignationTf(myEquipmt.getDesignation());
+                updateEquipmentController.setModModeleTf(myEquipmt.getModel());
+                updateEquipmentController.setModMarqueTf(myEquipmt.getMarque());
+                updateEquipmentController.setModNumbseriTf(myEquipmt.getNumserie());
+/*
+                updateEquipmentController.setModAnneServiceTf(myEquipmt.getAnneAcquis());
+*/
+
+                updateEquipmentController.getModBtnAddValidate().setOnAction(event1 -> {
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    java.sql.Timestamp timestamp =
+                            new java.sql.Timestamp(calendar.getTimeInMillis());
+
+                    try {
+
+                        //System.out.println("EquipId " + myEquipmt.getEquipmentId());
+
+                        databaseHandler.updateEquipment(updateEquipmentController.getModDesignationTf(), updateEquipmentController.getModModeleTf(),
+                                updateEquipmentController.getModMarqueTf(), updateEquipmentController.getModNumbseriTf(),
+                                myEquipmt.getEquipmentId());
+
+                        //update our listController
+                        // updateTaskController.refreshList();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+                stage.setTitle("Modifier un équipement");
+
+                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+                stage.getIcons().add(ic);
+
+                stage.show();
+
+
+            });
+
+            /*signPanneBtn.setOnMouseClicked(event -> {
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("signalPaneView.fxml"));
+
+
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+
+                Panne panne = new Panne();
+
+                SignalPaneController signalPanneController = loader.getController();
+                signalPanneController.setDesripPanneTa(panne.getDescription());
+                //updateEquipmentController.setModMarqueTf(myEquipmt.getMarque());
+                //updateEquipmentController.setModNumbseriTf(myEquipmt.getNumserie());
+*//*
+                updateEquipmentController.setModAnneServiceTf(myEquipmt.getAnneAcquis());
+*//*
+
+                signalPanneController.getBtnSignal().setOnAction(event1 -> {
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    java.sql.Timestamp timestamp =
+                            new java.sql.Timestamp(calendar.getTimeInMillis());
+                    System.out.println("EquipId " + panne.getEquipmentId());
+
+                    *//*try {
+
+                        System.out.println("EquipId " + panne.getEquipmentId());
+
+                        *//**//*databaseHandler.updateEquipment(updateEquipmentController.getModDesignationTf(), updateEquipmentController.getModModeleTf(),
+                                updateEquipmentController.getModMarqueTf(), updateEquipmentController.getModNumbseriTf(),
+                                myEquipmt.getEquipmentId());*//**//*
+
+                        //update our listController
+                        // updateTaskController.refreshList();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }*//*
+
+                });
+
+                stage.setTitle("Signaler une panne");
+                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+                stage.getIcons().add(ic);
+
+                stage.show();
+
+
+            });*/
+
+            signPanneBtn.setOnMouseClicked(event -> {
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("signalPaneView.fxml"));
+
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+
+                SignalPaneController signalPanneController = loader.getController();
+
+                // Pass the userId to the SignalPaneController
+                signalPanneController.setUserId(userId);
+                signalPanneController.setEquipmentId(getItem().getEquipmentId());
+
+                // Additional logic for signalPanneController, if needed
+                Panne panne = new Panne();
+                signalPanneController.setDesripPanneTa(panne.getDescription());
+
+                signalPanneController.getBtnSignal().setOnAction(event1 -> {
+
+                    Calendar calendar = Calendar.getInstance();
+                    java.sql.Timestamp timestamp = new java.sql.Timestamp(calendar.getTimeInMillis());
+
+                    //System.out.println("EquipId " + panne.getEquipmentId());
+                    //System.out.println("User ID: " + userId);
+                    //System.out.println("Equipment ID: " + signalPanneController.getEquipmentId());
+
+                    // Logic to handle signaling a panne...
+                });
+
+                stage.setTitle("Signaler une panne");
+                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+                stage.getIcons().add(ic);
+                stage.show();
+            });
+
             deleteBtn.setOnMouseClicked(event -> {
 
                 try {
 
                     databaseHandler.deleteEquipment(equipmtId);
-                    System.out.println("ID Equipment "+ equipmtId);
+                    //System.out.println("ID Equipment "+ equipmtId);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -154,5 +326,16 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
             setText(null);
             setGraphic(rootPane);
         }
+    }
+
+    public int getUserId() {
+        //System.out.println("from getUserId() " + userId);
+
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+        //System.out.println("User ID set in CellEquipementController: " + this.userId);
     }
 }

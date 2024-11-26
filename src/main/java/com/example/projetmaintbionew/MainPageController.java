@@ -52,7 +52,7 @@ public class MainPageController implements Initializable {
     private JFXButton intervGesBtn;
 
     @FXML
-    private JFXButton logoBtn;
+    private ImageView logoBtn1;
 
     @FXML
     private MenuItem miProfAdm;
@@ -76,9 +76,6 @@ public class MainPageController implements Initializable {
     private JFXPasswordField pwdUsr;
 
     @FXML
-    private JFXButton signalPanBtn;
-
-    @FXML
     private JFXButton updUsrBtn;
 
     @FXML
@@ -94,9 +91,6 @@ public class MainPageController implements Initializable {
         ImageView iconView2 = new ImageView(icon2);
         iconView2.setFitWidth(65);
         iconView2.setFitHeight(65);
-        logoBtn.setGraphic(iconView2);
-        logoBtn.setMinWidth(66);
-        logoBtn.setMinHeight(66);
 
         Image icon1 = new Image(getClass().getResourceAsStream("/logOut.png"));
         ImageView iconView1 = new ImageView(icon1);
@@ -126,9 +120,6 @@ public class MainPageController implements Initializable {
         ImageView iconView5 = new ImageView(icon5);
         iconView5.setFitWidth(15);
         iconView5.setFitHeight(15);
-        signalPanBtn.setGraphic(iconView5);
-        signalPanBtn.setMinWidth(197);
-        signalPanBtn.setMinHeight(34);
 
         final String[] profileTexte = new String[1];
 
@@ -247,7 +238,7 @@ public class MainPageController implements Initializable {
     public void setUserId(int userId) {
 
         this.userId = userId;
-        System.out.println("User Id is " + this.userId);
+        //System.out.println("User Id is " + this.userId);
 
     }
 
