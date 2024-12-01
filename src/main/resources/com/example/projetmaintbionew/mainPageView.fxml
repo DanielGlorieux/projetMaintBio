@@ -50,6 +50,15 @@
                         </JFXButton>
                      </children>
                   </VBox>
+                  <VBox layoutX="10.0" layoutY="396.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="signaPanneBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Signalement des pannes" textFill="WHITE" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
                   <VBox layoutX="10.0" layoutY="221.0" prefHeight="70.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="intervGesBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Gestion des interventions" textFill="WHITE" VBox.vgrow="ALWAYS">

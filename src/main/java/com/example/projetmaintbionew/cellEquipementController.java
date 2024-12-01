@@ -155,67 +155,6 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("signalPaneView.fxml"));
 
-
-                try {
-                    loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                Parent root = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-
-                Panne panne = new Panne();
-
-                SignalPaneController signalPanneController = loader.getController();
-                signalPanneController.setDesripPanneTa(panne.getDescription());
-                //updateEquipmentController.setModMarqueTf(myEquipmt.getMarque());
-                //updateEquipmentController.setModNumbseriTf(myEquipmt.getNumserie());
-*//*
-                updateEquipmentController.setModAnneServiceTf(myEquipmt.getAnneAcquis());
-*//*
-
-                signalPanneController.getBtnSignal().setOnAction(event1 -> {
-
-                    Calendar calendar = Calendar.getInstance();
-
-                    java.sql.Timestamp timestamp =
-                            new java.sql.Timestamp(calendar.getTimeInMillis());
-                    System.out.println("EquipId " + panne.getEquipmentId());
-
-                    *//*try {
-
-                        System.out.println("EquipId " + panne.getEquipmentId());
-
-                        *//**//*databaseHandler.updateEquipment(updateEquipmentController.getModDesignationTf(), updateEquipmentController.getModModeleTf(),
-                                updateEquipmentController.getModMarqueTf(), updateEquipmentController.getModNumbseriTf(),
-                                myEquipmt.getEquipmentId());*//**//*
-
-                        //update our listController
-                        // updateTaskController.refreshList();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }*//*
-
-                });
-
-                stage.setTitle("Signaler une panne");
-                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
-                stage.getIcons().add(ic);
-
-                stage.show();
-
-
-            });*/
-
-            signPanneBtn.setOnMouseClicked(event -> {
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("signalPaneView.fxml"));
-
                 try {
                     loader.load();
                 } catch (IOException e) {
@@ -252,12 +191,10 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
                 Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
                 stage.getIcons().add(ic);
                 stage.show();
-            });
+            });*/
 
             deleteBtn.setOnMouseClicked(event -> {
-
                 try {
-
                     databaseHandler.deleteEquipment(equipmtId);
                     //System.out.println("ID Equipment "+ equipmtId);
 

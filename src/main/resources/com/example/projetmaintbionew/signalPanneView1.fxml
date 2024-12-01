@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.SignalePanneV1Controller">
+   <children>
+      <VBox prefHeight="700.0" prefWidth="802.0" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="802.0" style="-fx-background-color: #D2F1CF;" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="802.0">
+                     <children>
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="120.0" layoutY="10.0" prefHeight="70.0" prefWidth="100.0" />
+                        <HBox prefHeight="70.0" prefWidth="160.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="160.0" text="Signalement des pannes" textAlignment="CENTER" underline="true">
+                                 <font>
+                                    <Font size="13.4" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="100.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="signPanneBtnV1" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Signaler une panne" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="80.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="gestPanneBrnV1" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Gérer les pannes" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="300.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="changeP" prefHeight="560.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="20.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXTextField fx:id="numSerieTf" focusColor="#144e25" prefHeight="34.0" promptText="Numéro de série de l'appareil" unFocusColor="#4059a9">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="marqueAppTf" focusColor="#144e25" prefHeight="34.0" promptText="Marque de l'appareil " unFocusColor="#4059a9">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="designationAppTf" focusColor="#144e25" layoutX="10.0" layoutY="60.0" prefHeight="34.0" promptText="Marque de l'appareil " text="Désignation" unFocusColor="#4059a9">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MenuButton fx:id="typePanne" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Type " textFill="WHITE">
+                           <items>
+                              <MenuItem fx:id="miMaintPred" mnemonicParsing="false" text="Maintenance prédictive" />
+                              <MenuItem fx:id="miPanneOcr" mnemonicParsing="false" text="Panne occurente" />
+                           </items>
+                           <font>
+                              <Font size="13.3" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="125.0" top="12.0" />
+                           </VBox.margin>
+                        </MenuButton>
+                        <JFXTextArea fx:id="descPanneTf" prefHeight="70.0" prefWidth="802.0" promptText="Decrivez la panne">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="18.0" />
+                           </VBox.margin>
+                        </JFXTextArea>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="65.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="87.0" prefWidth="802.0">
+                           <children>
+                              <JFXButton fx:id="btnSignaler" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Signaler" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="325.0" top="20.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

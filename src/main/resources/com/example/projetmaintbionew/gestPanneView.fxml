@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="changeP" prefHeight="560.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestPanneController">
+   <children>
+      <VBox prefHeight="20.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView prefHeight="526.0" prefWidth="779.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="20.0" />
+               </VBox.margin>
+            </TableView>
+         </children></VBox>
+   </children>
+</VBox>

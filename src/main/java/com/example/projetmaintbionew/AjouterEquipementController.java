@@ -1,34 +1,26 @@
 package com.example.projetmaintbionew;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import databaseHelper.DBHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class GestionEquipementController implements Initializable {
+public class AjouterEquipementController implements Initializable {
 
-    private static int userId;
 
-    private DBHandler databaseHandler;
-
-    @FXML
-    private JFXButton addEquipMenuBtn;
 
     @FXML
     private DatePicker anneServiceTf;
@@ -37,13 +29,7 @@ public class GestionEquipementController implements Initializable {
     private JFXButton btnAddValidate;
 
     @FXML
-    private HBox change;
-
-    @FXML
     private VBox changeP;
-
-    @FXML
-    private JFXButton deleteEquipMenuBtn;
 
     @FXML
     private JFXTextField designationTf;
@@ -120,16 +106,14 @@ public class GestionEquipementController implements Initializable {
     @FXML
     private MenuButton srcAcquisMb;
 
-    @FXML
-    private JFXButton updEquipMenuBtn;
-
-    @FXML
-    private JFXButton visEquipMenuBtn;
-
     private String selectedSourceAcquis;
     private String selectedEtatEquip;
     private String selectedServiceAff;
     private String selectedSalleAff;
+
+    private DBHandler databaseHandler;
+
+    private static int userId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -160,7 +144,6 @@ public class GestionEquipementController implements Initializable {
         miSalleAff4.setOnAction(event -> setSelectedSalleAff("Salle4"));
         miSalleAff5.setOnAction(event -> setSelectedSalleAff("Salle5"));
 
-
         btnAddValidate.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -176,9 +159,11 @@ public class GestionEquipementController implements Initializable {
                 int annee = getYearFromDatePicker(anneServiceTf);
 
                 if (!desigationText.equals("") || !marqueText.equals("") || !modelText.equals("") ||
-                !numSerieText.equals("")){
+                        !numSerieText.equals("")){
 
-                    System.out.println("User Id: " + GestionEquipementController.userId);
+                    System.out.println("User Id: " + GestionEquipementController.getUserId());
+
+                    //setUserId(GestionEquipementController.getUserId());
 
                     equipement.setUserId(MainPageController.userId);
                     equipement.setDesignation(desigationText);
@@ -201,66 +186,6 @@ public class GestionEquipementController implements Initializable {
                     anneServiceTf.setValue(null);
 
 
-                }
-
-            }
-        });
-
-        updEquipMenuBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                /*try {
-                    changeP.getChildren().clear();
-                    changeP.getChildren().add((Node)FXMLLoader.load(getClass().getResource("listEquipementView.fxml")) );
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }*/
-
-                /*try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("listEquipementView.fxml"));
-                    Node uptEquipementView = loader.load();
-                    UpdateEquipmentFormController  updtEquipementController = loader.getController();
-                    updtEquipementController.setUserId(userId);
-
-                    changeP.getChildren().clear();
-                    changeP.getChildren().add(uptEquipementView);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }*/
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("listEquipementView.fxml"));
-                    Node listEquipementView = loader.load();
-
-                    // Pass user ID to ListEquipementController
-                    ListEquipementController listEquipementController = loader.getController();
-                    listEquipementController.setUserId(userId); // Use the userId from GestionEquipementController
-
-                    changeP.getChildren().clear();
-                    changeP.getChildren().add(listEquipementView);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-
-        addEquipMenuBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ajouterEquipementView.fxml"));
-                    Node ajouterEquipementView = loader.load();
-
-                    // Pass user ID to ListEquipementController
-                    AjouterEquipementController ajouterEquipementController = loader.getController();
-                    ajouterEquipementController.setUserId(userId); // Use the userId from GestionEquipementController
-
-                    changeP.getChildren().clear();
-                    changeP.getChildren().add(ajouterEquipementView);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
                 }
 
             }
@@ -328,7 +253,7 @@ public class GestionEquipementController implements Initializable {
         return selectedSalleAff;
     }
 
-    public static int getUserId() {
+    public int getUserId() {
         System.out.println("from getUserId() " + userId);
 
         return userId;

@@ -81,6 +81,9 @@ public class MainPageController implements Initializable {
     @FXML
     private JFXButton usrGesBtn;
 
+    @FXML
+    private JFXButton signaPanneBtn;
+
     private String selectedProfile;
     public static int userId;
 
@@ -154,6 +157,19 @@ public class MainPageController implements Initializable {
             }
         });
 
+        deleteUsrBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    changeP.getChildren().clear();
+                    changeP.getChildren().add((Node) FXMLLoader.load(getClass().getResource("suppUtilisateurView.fxml")));
+                    //changePane.setVisible(true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
         btnCreatUsr.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -218,6 +234,42 @@ public class MainPageController implements Initializable {
 
                     change.getChildren().clear();
                     change.getChildren().add(gestionEquipementView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        equipGesBtn1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("statisticsView.fxml"));
+                    Node statisticsView = loader.load();
+                    StatisticsController statisticsController = loader.getController();
+                    statisticsController.setUserId(userId);
+
+                    change.getChildren().clear();
+                    change.getChildren().add(statisticsView);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+
+        signaPanneBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("signalPanneView1.fxml"));
+                    Node signalPView = loader.load();
+                    SignalePanneV1Controller signalPController = loader.getController();
+                    signalPController.setUserId(userId);
+
+                    change.getChildren().clear();
+                    change.getChildren().add(signalPView);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

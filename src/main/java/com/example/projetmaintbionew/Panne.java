@@ -19,6 +19,12 @@ public class Panne {
         this.idUser = idUser;
     }
 
+    public Panne(int equipmentId, String description, int idUser) {
+        this.equipmentId = equipmentId;
+        this.description = description;
+        this.idUser = idUser;
+    }
+
     public int getPanneId() {
         return panneId;
     }

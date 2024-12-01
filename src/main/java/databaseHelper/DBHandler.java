@@ -169,9 +169,9 @@ public class DBHandler extends Configuration{
 
 
 
-    public static void addPane(Panne panne) {
+    public void addPane(Panne panne) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO panne (idequipment, description, idUser) VALUES (?, ?, ?)";
-        try {
+        /*try {
             Connection conn = getDbConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(insert);
             preparedStatement.setInt(1, panne.getEquipmentId());
@@ -186,7 +186,191 @@ public class DBHandler extends Configuration{
         } catch (ClassNotFoundException e) {
             System.err.println("Class not found: " + e.getMessage());
             e.printStackTrace();
+        }*/
+
+        Connection conn = getDbConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(insert);
+        preparedStatement.setInt(1, panne.getEquipmentId());
+        preparedStatement.setString(2, panne.getDescription());
+        preparedStatement.setInt(3, panne.getIdUser());
+    }
+
+
+    /*public void addPanne(String panne, String numSerie, String marque, String type) throws SQLException, ClassNotFoundException {
+        String insert = "INSERT INTO panne (description, type) VALUES (?, ?) ";
+        //String query = "UPDATE equipment SET panne=? WHERE num_serie=? AND marque=?";
+
+
+        Connection conn = getDbConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(insert);
+        preparedStatement.setString(1, panne);
+        preparedStatement.setString(2, type);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+
+    }*/
+
+    /*public void addPanne(String panne, String numSerie, String marque, String type) throws SQLException, ClassNotFoundException {
+        // Insert into panne table
+        //String insertPanneQuery = "INSERT INTO panne (description, type) VALUES (?, ?)";
+        String updateEquipmentQuery = "UPDATE equipment SET idpanne = ? WHERE num_serie = ? AND marque = ?";
+        String insertPanneQuery = "INSERT INTO panne (description, type, idequipment) VALUES (?, ?, ?)";
+
+        Connection conn = null;
+        PreparedStatement insertPanneStmt = null;
+        PreparedStatement updateEquipmentStmt = null;
+
+        try {
+            conn = getDbConnection();
+            // Start a transaction
+            conn.setAutoCommit(false);
+
+            // Insert into panne and retrieve generated id
+            insertPanneStmt = conn.prepareStatement(insertPanneQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+            insertPanneStmt.setString(1, panne);
+            insertPanneStmt.setString(2, type);
+            insertPanneStmt.executeUpdate();
+
+            // Retrieve generated idpanne
+            int idpanne = 0;
+            ResultSet rs = insertPanneStmt.getGeneratedKeys();
+            if (rs.next()) {
+                idpanne = rs.getInt(1);
+            }
+            rs.close();
+
+            // Update the equipment table
+            updateEquipmentStmt = conn.prepareStatement(updateEquipmentQuery);
+            updateEquipmentStmt.setInt(1, idpanne);
+            updateEquipmentStmt.setString(2, numSerie);
+            updateEquipmentStmt.setString(3, marque);
+            updateEquipmentStmt.executeUpdate();
+
+            // Commit the transaction
+            conn.commit();
+        } catch (SQLException e) {
+            if (conn != null) {
+                conn.rollback(); // Rollback transaction in case of error
+            }
+            throw e;
+        } finally {
+            // Close resources
+            if (insertPanneStmt != null) {
+                insertPanneStmt.close();
+            }
+            if (updateEquipmentStmt != null) {
+                updateEquipmentStmt.close();
+            }
+            if (conn != null) {
+                conn.setAutoCommit(true);
+                conn.close();
+            }
         }
+    }*/
+
+    public void addPanne(String panne, String numSerie, String marque, String type) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement insertPanneStmt = null;
+        PreparedStatement selectEquipmentStmt = null;
+        PreparedStatement updateEquipmentStmt = null;
+        PreparedStatement updatePanneQueryStmt = null;
+        ResultSet generatedKeys = null;
+        ResultSet equipmentResult = null;
+
+        try {
+            conn = getDbConnection();
+            conn.setAutoCommit(false); // Enable transaction management
+
+            // Step 1: Insert into the panne table
+            String insertPanneQuery = "INSERT INTO panne (description, type) VALUES (?, ?)";
+            insertPanneStmt = conn.prepareStatement(insertPanneQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+            insertPanneStmt.setString(1, panne);
+            insertPanneStmt.setString(2, type);
+            insertPanneStmt.executeUpdate();
+
+            // Retrieve the generated idpanne
+            generatedKeys = insertPanneStmt.getGeneratedKeys();
+            if (!generatedKeys.next()) {
+                throw new SQLException("Echec retrouvement de idpanne pour la nouvelle panne.");
+            }
+            int idpanne = generatedKeys.getInt(1);
+
+            // Step 2: Retrieve the corresponding idequipment from the equipment table
+            String selectEquipmentQuery = "SELECT idequipment FROM equipment WHERE num_serie = ? AND marque = ?";
+            selectEquipmentStmt = conn.prepareStatement(selectEquipmentQuery);
+            selectEquipmentStmt.setString(1, numSerie);
+            selectEquipmentStmt.setString(2, marque);
+            equipmentResult = selectEquipmentStmt.executeQuery();
+
+            if (!equipmentResult.next()) {
+                throw new SQLException("No equipment found with the specified num_serie and marque.");
+            }
+            int idequipment = equipmentResult.getInt("idequipment");
+
+            // Step 3: Update the equipment table to associate the panne with the equipment
+            String updateEquipmentQuery = "UPDATE equipment SET idpanne = ? WHERE idequipment = ?";
+            updateEquipmentStmt = conn.prepareStatement(updateEquipmentQuery);
+            updateEquipmentStmt.setInt(1, idpanne);
+            updateEquipmentStmt.setInt(2, idequipment);
+            updateEquipmentStmt.executeUpdate();
+
+            // Step 4: Update the equipment table to associate the panne with the equipment
+            String updatePanneQuery = "UPDATE panne SET idequipment = ? WHERE idpanne = ?";
+            updatePanneQueryStmt = conn.prepareStatement(updatePanneQuery);
+            updatePanneQueryStmt.setInt(1, idequipment);
+            updatePanneQueryStmt.setInt(2, idpanne);
+            updatePanneQueryStmt.executeUpdate();
+
+            // Commit the transaction
+            conn.commit();
+        } catch (SQLException e) {
+            if (conn != null) {
+                conn.rollback(); // Roll back the transaction in case of an error
+            }
+            throw e;
+        } finally {
+            // Clean up resources
+            if (generatedKeys != null) generatedKeys.close();
+            if (equipmentResult != null) equipmentResult.close();
+            if (insertPanneStmt != null) insertPanneStmt.close();
+            if (selectEquipmentStmt != null) selectEquipmentStmt.close();
+            if (updateEquipmentStmt != null) updateEquipmentStmt.close();
+            if (updatePanneQueryStmt != null) updatePanneQueryStmt.close();
+            if (conn != null) conn.setAutoCommit(true); // Reset auto-commit
+        }
+    }
+
+
+
+    public static ResultSet getPanne() {
+
+        ResultSet resultPanne = null;
+
+        String query = "SELECT * FROM panne";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+
+            resultPanne = preparedStatement.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        return resultPanne;
+    }
+
+    public void deleteUser(String name) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM " + Constantes.USER_TABLE + " WHERE "+
+                Constantes.USER_NAME + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.execute();
+        preparedStatement.close();
     }
 
     // Ajout de membre

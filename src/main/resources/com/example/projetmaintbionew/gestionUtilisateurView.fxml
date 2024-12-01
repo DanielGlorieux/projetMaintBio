@@ -1,73 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestionUtilisateurController">
+<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestionUtilisateurController">
    <children>
-      <VBox prefHeight="70.0" prefWidth="802.0" style="-fx-background-color: D2F1CF;">
+      <VBox prefHeight="700.0" prefWidth="802.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox prefHeight="70.0" prefWidth="802.0">
+            <VBox prefHeight="70.0" prefWidth="802.0" style="-fx-background-color: #D2F1CF;" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox prefHeight="70.0" prefWidth="110.0" />
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
-                  <HBox layoutX="124.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="140.0">
+                  <HBox prefHeight="70.0" prefWidth="802.0">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="142.0" text="Gestion des utilisateurs" underline="true">
-                           <font>
-                              <Font size="13.4" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="15.0" />
-                           </HBox.margin>
-                        </Label>
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="120.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="140.0">
+                           <children>
+                              <Label prefHeight="38.0" prefWidth="142.0" text="Gestion des utilisateurs" underline="true">
+                                 <font>
+                                    <Font size="13.4" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
                      </children>
                   </HBox>
-                  <HBox layoutX="124.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
-                  <HBox layoutX="239.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
-                  <HBox layoutX="582.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
                </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="802.0">
-         <children>
-            <HBox prefHeight="70.0" prefWidth="802.0">
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="addUsrBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Ajouter un utilisateur" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="50.0" top="15.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="modUsrBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Modifier un utilisateur" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="50.0" top="15.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="deleteUsrBtn" layoutX="60.0" layoutY="25.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Supprimer un utilisateur" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="50.0" top="15.0" />
-                     </HBox.margin>
-                  </JFXButton>
+                  <HBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="addUsrBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Ajouter un utilisateur" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="updUsrBtn" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Modifier un utilisateur" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="deleteUsrBtn" prefHeight="34.0" prefWidth="197.0" style="-fx-background-color: #144E25;" text="Supprimer un utilisateur" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
+            <VBox fx:id="changeP" prefHeight="560.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="80.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXTextField fx:id="nameUsr" focusColor="#144e25" prefHeight="34.0" promptText="Entrer le nom d’utilisateur" unFocusColor="#4059a9">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MenuButton fx:id="profileUsr" mnemonicParsing="false" prefHeight="34.0" prefWidth="239.0" style="-fx-background-color: #144E25;" text="Définissez le profile de l'utilisateur" textFill="WHITE">
+                           <items>
+                              <MenuItem fx:id="miProfUtili" mnemonicParsing="false" text="Utilisateur" />
+                              <MenuItem fx:id="miProfTI" mnemonicParsing="false" text="Technicien_intervenant" />
+                              <MenuItem fx:id="miProfTC" mnemonicParsing="false" text="Technicien_chef" />
+                              <MenuItem fx:id="miProfAdm" mnemonicParsing="false" text="Administrateur" />
+                           </items>
+                           <VBox.margin>
+                              <Insets left="122.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.3" />
+                           </font>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXPasswordField fx:id="pwdUsr" prefHeight="34.0" promptText="Entrer votre mot de passe" unFocusColor="#144e25">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                        </JFXPasswordField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="btnCreatUsr" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Créer" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="325.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <VBox fx:id="changePaneGestUsr" prefHeight="560.0" prefWidth="802.0" />
    </children>
-</VBox>
+</HBox>

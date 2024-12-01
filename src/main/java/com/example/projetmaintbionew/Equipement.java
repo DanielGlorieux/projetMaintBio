@@ -17,7 +17,17 @@ public class Equipement {
     private String service;
     private String salleAff;
 
+    private String panne;
+
     public Equipement() {
+    }
+
+    public String getPanne() {
+        return panne;
+    }
+
+    public void setPanne(String panne) {
+        this.panne = panne;
     }
 
     public Equipement(int userId, int equipmentId, Timestamp anneAcquis, int anneMisServ, String designation, String marque, String model, String numserie, String sourceAcquis, String etat, String service, String salleAff) {
@@ -33,6 +43,12 @@ public class Equipement {
         this.etat = etat;
         this.service = service;
         this.salleAff = salleAff;
+    }
+
+    public Equipement(String marque, String numserie, String panne) {
+        this.marque = marque;
+        this.numserie = numserie;
+        this.panne = panne;
     }
 
     public int getUserId() {

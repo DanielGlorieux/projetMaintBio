@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.StatisticsController">
+   <children>
+      <VBox prefHeight="700.0" prefWidth="802.0" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="802.0" style="-fx-background-color: #D2F1CF;" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="70.0" prefWidth="802.0">
+                     <children>
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                        <HBox layoutX="120.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="140.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="142.0" text="Tableau de bord" textAlignment="CENTER" underline="true">
+                                 <font>
+                                    <Font size="13.4" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                        <HBox prefHeight="70.0" prefWidth="110.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="608.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="443.0" prefWidth="802.0">
+                     <children>
+                        <VBox prefHeight="302.0" prefWidth="402.0">
+                           <children>
+                              <PieChart fx:id="pieChart" prefHeight="302.0" prefWidth="402.0" title="Equipement vs pannes" titleSide="BOTTOM" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="302.0" prefWidth="402.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="443.0" prefWidth="802.0">
+                     <children>
+                        <VBox prefHeight="302.0" prefWidth="402.0">
+                           <children>
+                              <StackedBarChart fx:id="stackBarChar" prefHeight="302.0" prefWidth="402.0" title="Equipement par service" titleSide="BOTTOM">
+                                <xAxis>
+                                  <CategoryAxis label="Service" side="BOTTOM" fx:id="xAxe" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yAxe" label="Effectif" side="LEFT" />
+                                </yAxis>
+                              </StackedBarChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
