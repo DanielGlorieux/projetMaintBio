@@ -1,7 +1,10 @@
 package databaseHelper;
 import com.example.projetmaintbionew.Equipement;
 import com.example.projetmaintbionew.Panne;
+import com.example.projetmaintbionew.PanneEquipmentData;
 import com.example.projetmaintbionew.Utilisateur;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 
@@ -193,6 +196,45 @@ public class DBHandler extends Configuration{
         preparedStatement.setInt(1, panne.getEquipmentId());
         preparedStatement.setString(2, panne.getDescription());
         preparedStatement.setInt(3, panne.getIdUser());
+    }
+
+    public static ObservableList<PanneEquipmentData> getPanneAndEquipmentData() {
+        ObservableList<PanneEquipmentData> data = FXCollections.observableArrayList();
+
+        String query = """
+        SELECT 
+        equipment.marque, 
+        equipment.designation, 
+        panne.description, 
+        panne.type, 
+        panne.statut 
+        FROM projmaintbio.panne 
+        LEFT JOIN projmaintbio.equipment 
+        ON panne.idequipment = equipment.idequipment
+        """;
+
+        try (Connection conn = getDbConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String description = resultSet.getString("description");
+                String marque = resultSet.getString("marque");
+                String designation = resultSet.getString("designation");
+                String type = resultSet.getString("type");
+                String statut = resultSet.getString("statut");
+
+
+                // Add data to the observable list
+                data.add(new PanneEquipmentData(designation, marque,description, statut, type));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return data;
     }
 
 

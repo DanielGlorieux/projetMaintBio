@@ -9,13 +9,16 @@
    <children>
       <VBox prefHeight="20.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView prefHeight="526.0" prefWidth="779.0">
+            <TableView fx:id="tbPanne" prefHeight="526.0" prefWidth="779.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="tcDesignation" prefWidth="150.0" text="Designation" />
+                  <TableColumn fx:id="tcMarque" prefWidth="120.0" text="Marque" />
+                <TableColumn fx:id="tcDescript" prefWidth="150.0" text="Description de la panne" />
+                  <TableColumn fx:id="tcTypeP" prefWidth="150.0" text="Type de la panne" />
+                  <TableColumn fx:id="tcStatut" prefWidth="130.0" text="Statut de la panne" />
               </columns>
                <VBox.margin>
-                  <Insets left="15.0" right="15.0" top="20.0" />
+                  <Insets left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
             </TableView>
          </children></VBox>

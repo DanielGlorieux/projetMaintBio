@@ -53,7 +53,7 @@
                               <Insets left="80.0" top="15.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="gestPanneBrnV1" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Gérer les pannes" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="gestPanneBrnV1" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="170.0" style="-fx-background-color: #144E25;" text="Historique des pannes" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="14.0" />
                            </font>

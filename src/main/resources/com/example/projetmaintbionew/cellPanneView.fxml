@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="770.0" style="-fx-background-color: #C8E6C9;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="iconeEquipment" fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../panneLogo.png" />
+         </image>
+         <HBox.margin>
+            <Insets bottom="2.0" left="10.0" top="2.0" />
+         </HBox.margin>
+      </ImageView>
+      <VBox prefHeight="56.0" prefWidth="293.0">
+         <children>
+            <Label fx:id="marqueEquipementLabel" prefHeight="19.0" prefWidth="218.0" text="Marque">
+               <VBox.margin>
+                  <Insets left="30.0" top="2.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="modeleEquipementLabel" prefHeight="20.0" prefWidth="263.0" text="Modele">
+               <VBox.margin>
+                  <Insets left="30.0" top="3.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="56.0" prefWidth="246.0">
+         <children>
+            <Label fx:id="lieuEquipementLabel" prefHeight="4.0" prefWidth="234.0" text="Lieu affectation">
+               <VBox.margin>
+                  <Insets left="5.0" top="2.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="descPanneLabel" layoutX="15.0" layoutY="12.0" prefHeight="20.0" prefWidth="280.0" text="Description">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="3.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="56.0" prefWidth="136.0">
+         <children>
+            <Label fx:id="modelLabel" prefHeight="19.0" prefWidth="191.0" />
+         </children>
+      </VBox>
+      <HBox prefHeight="56.0" prefWidth="62.0">
+         <children>
+            <VBox prefHeight="56.0" prefWidth="30.0">
+               <children>
+                  <ImageView fx:id="UpdtBtn" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="4.0" top="8.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../../../traiter.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="deleteBtn" fitHeight="19.0" fitWidth="19.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="4.0" top="4.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../../../valider.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="51.0" prefWidth="29.0" />
+         </children>
+      </HBox>
+   </children>
+</HBox>
