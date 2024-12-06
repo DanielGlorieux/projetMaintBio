@@ -56,7 +56,7 @@
                      <children>
                         <VBox prefHeight="302.0" prefWidth="402.0">
                            <children>
-                              <StackedBarChart fx:id="stackBarChar" prefHeight="302.0" prefWidth="402.0" title="Equipement par service" titleSide="BOTTOM">
+                              <StackedBarChart fx:id="stackBarChar" prefHeight="302.0" prefWidth="402.0" title="Pannes et Interventions par service" titleSide="BOTTOM">
                                 <xAxis>
                                   <CategoryAxis label="Service" side="BOTTOM" fx:id="xAxe" />
                                 </xAxis>

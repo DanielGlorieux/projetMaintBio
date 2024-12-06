@@ -11,12 +11,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.MenuButton;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -123,6 +127,32 @@ public class MainPageController implements Initializable {
         ImageView iconView5 = new ImageView(icon5);
         iconView5.setFitWidth(15);
         iconView5.setFitHeight(15);
+
+        Image icon6 = new Image(getClass().getResourceAsStream("/alerte.png"));
+        ImageView iconView6 = new ImageView(icon6);
+        iconView6.setFitWidth(15);
+        iconView6.setFitHeight(15);
+        signaPanneBtn.setGraphic(iconView6);
+        signaPanneBtn.setMinWidth(197);
+        signaPanneBtn.setMinHeight(34);
+
+        Image icon7 = new Image(getClass().getResourceAsStream("/interv.png"));
+        ImageView iconView7 = new ImageView(icon7);
+        iconView7.setFitWidth(15);
+        iconView7.setFitHeight(15);
+        intervGesBtn.setGraphic(iconView7);
+        intervGesBtn.setMinWidth(197);
+        intervGesBtn.setMinHeight(34);
+
+
+        Image icon8 = new Image(getClass().getResourceAsStream("/statistiques.png"));
+        ImageView iconView8 = new ImageView(icon8);
+        iconView8.setFitWidth(15);
+        iconView8.setFitHeight(15);
+        equipGesBtn1.setGraphic(iconView8);
+        equipGesBtn1.setMinWidth(197);
+        equipGesBtn1.setMinHeight(34);
+
 
         final String[] profileTexte = new String[1];
 
@@ -273,6 +303,40 @@ public class MainPageController implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+
+        intervGesBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    change.getChildren().clear();
+                    change.getChildren().add((Node)FXMLLoader.load(getClass().getResource("listPanneView.fxml")) );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        exitBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                exitBtn.getScene().getWindow().hide();
+                Stage stage = new Stage();
+                try{
+                    Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                    Scene scene = new Scene(root);
+                    stage.setTitle("MaintBio");
+
+                    //Image ic = new Image(getClass().getResource("/logo.png").toExternalForm());
+                    //stage.getIcons().add(ic);
+                    stage.setScene(scene);
+                }catch (IOException e){
+                    System.out.println(e);
+                }
+                Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+                stage.getIcons().add(ic);
+                stage.show();
             }
         });
     }

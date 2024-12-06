@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class CellPanneController extends JFXListCell<Intervention> implements Initializable {
+public class CellPanneController extends JFXListCell<PanneEquipmentData> implements Initializable {
 
 
     @FXML
@@ -65,7 +65,7 @@ public class CellPanneController extends JFXListCell<Intervention> implements In
     }
 
     @Override
-    protected void updateItem(Intervention myInterventon, boolean empty) {
+    protected void updateItem(PanneEquipmentData myInterventon, boolean empty) {
         super.updateItem(myInterventon, empty);
 
         if (empty || myInterventon == null){
@@ -88,16 +88,50 @@ public class CellPanneController extends JFXListCell<Intervention> implements In
             lieuEquipementLabel.setText(myInterventon.getLieuAff());
             descPanneLabel.setText(myInterventon.getDescription());
 
-            //int equipmtId = myEquipmt.getEquipmentId();
+            int intId = myInterventon.getInterventionId();
+
+            if (myInterventon.isTransmitted()) {
+                Image transmittedImage = new Image(getClass().getResourceAsStream("/traiteVal.png"));
+                UpdtBtn.setImage(transmittedImage);
+            } else {
+                Image defaultImage = new Image(getClass().getResourceAsStream("/traiter.png"));
+                UpdtBtn.setImage(defaultImage);
+            }
+
+            //System.out.println("Updating intervention with ID: " + intId);
 
             UpdtBtn.setOnMouseClicked(event -> {
+                //System.out.println("Update Button Clicked!");
+                try {
+
+                    //System.out.println("EquipId " + myEquipmt.getEquipmentId());
+
+                    databaseHandler.transIntervention(
+                            myInterventon.getInterventionId());
+                    //System.out.println("Update successful!");
+
+                    Image updatedImage = new Image(getClass().getResourceAsStream("/traiteVal.png"));
+                    UpdtBtn.setImage(updatedImage);
+
+                    //update our listController
+                    // updateTaskController.refreshList();
+                } catch (SQLException e) {
+                    System.out.println("SQL Exception: " + e.getMessage());
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    System.out.println("ClassNotFoundException: " + e.getMessage());
+                    e.printStackTrace();
+                }
 
             });
 
-            /*deleteBtn.setOnMouseClicked(event -> {
+            deleteBtn.setOnMouseClicked(event -> {
                 try {
-                    databaseHandler.deleteEquipment(equipmtId);
+                    databaseHandler.validateInterventionAndUpdatePanne(myInterventon.getInterventionId());
                     //System.out.println("ID Equipment "+ equipmtId);
+
+                    Image validatedImage = new Image(getClass().getResourceAsStream("/validerSet.png"));
+                    deleteBtn.setImage(validatedImage);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -107,7 +141,7 @@ public class CellPanneController extends JFXListCell<Intervention> implements In
 
                 getListView().getItems().remove(getItem());
 
-            });*/
+            });
 
             setText(null);
             setGraphic(rootPane);

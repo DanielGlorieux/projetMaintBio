@@ -53,7 +53,7 @@ public class ListEquipementController implements Initializable {
     }*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("initialize called");
+        //System.out.println("initialize called");
 
         equipmts = FXCollections.observableArrayList();
         databaseHandler = new DBHandler();

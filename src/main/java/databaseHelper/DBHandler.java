@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DBHandler extends Configuration{
     static Connection dbConnection;
@@ -316,6 +318,7 @@ public class DBHandler extends Configuration{
         PreparedStatement selectEquipmentStmt = null;
         PreparedStatement updateEquipmentStmt = null;
         PreparedStatement updatePanneQueryStmt = null;
+        PreparedStatement insertInterventionStmt = null;
         ResultSet generatedKeys = null;
         ResultSet equipmentResult = null;
 
@@ -363,6 +366,12 @@ public class DBHandler extends Configuration{
             updatePanneQueryStmt.setInt(2, idpanne);
             updatePanneQueryStmt.executeUpdate();
 
+            // Step 5: Insert into the intervention table
+            String insertInterventionQuery = "INSERT INTO intervention (idpanneI) VALUES (?)";
+            insertInterventionStmt = conn.prepareStatement(insertInterventionQuery);
+            insertInterventionStmt.setInt(1, idpanne);
+            insertInterventionStmt.executeUpdate();
+
             // Commit the transaction
             conn.commit();
         } catch (SQLException e) {
@@ -378,6 +387,7 @@ public class DBHandler extends Configuration{
             if (selectEquipmentStmt != null) selectEquipmentStmt.close();
             if (updateEquipmentStmt != null) updateEquipmentStmt.close();
             if (updatePanneQueryStmt != null) updatePanneQueryStmt.close();
+            if (insertInterventionStmt !=null) insertInterventionStmt.close();
             if (conn != null) conn.setAutoCommit(true); // Reset auto-commit
         }
     }
@@ -414,6 +424,171 @@ public class DBHandler extends Configuration{
         preparedStatement.execute();
         preparedStatement.close();
     }
+
+    public void transIntervention(int intId) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE intervention SET transmis = 'oui', transmitted = TRUE WHERE idintervention = ?";
+        //System.out.println("Executing Query: " + query + " with ID: " + intId);
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setInt(1, intId);
+        preparedStatement.execute();
+        preparedStatement.close();
+
+    }
+
+    /*public void validateIntervention(int intId) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE intervention SET valide = 'oui' WHERE idintervention = ?";
+        //System.out.println("Executing Query: " + query + " with ID: " + intId);
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+        preparedStatement.setInt(1, intId);
+        preparedStatement.execute();
+        preparedStatement.close();
+
+    }*/
+
+    public void validateInterventionAndUpdatePanne(int intId) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement updateInterventionStmt = null;
+        PreparedStatement updatePanneStmt = null;
+
+        try {
+            conn = getDbConnection();
+            conn.setAutoCommit(false); // Begin transaction
+
+            // Update the intervention table
+            String updateInterventionQuery = "UPDATE intervention SET valide = 'oui' WHERE idintervention = ?";
+            updateInterventionStmt = conn.prepareStatement(updateInterventionQuery);
+            updateInterventionStmt.setInt(1, intId);
+            updateInterventionStmt.executeUpdate();
+
+            // Update the panne table
+            String updatePanneQuery = """
+            UPDATE panne 
+            SET statut = 'traite' 
+            WHERE idpanne = (SELECT idpanneI FROM intervention WHERE idintervention = ?)
+        """;
+            updatePanneStmt = conn.prepareStatement(updatePanneQuery);
+            updatePanneStmt.setInt(1, intId);
+            updatePanneStmt.executeUpdate();
+
+            conn.commit(); // Commit transaction
+        } catch (SQLException e) {
+            if (conn != null) {
+                conn.rollback(); // Rollback transaction in case of error
+            }
+            throw e; // Re-throw exception for higher-level handling
+        } finally {
+            // Close resources
+            if (updateInterventionStmt != null) updateInterventionStmt.close();
+            if (updatePanneStmt != null) updatePanneStmt.close();
+            if (conn != null) conn.setAutoCommit(true); // Reset auto-commit
+        }
+    }
+
+
+    /*public static ResultSet getEquipmentWithPanneNonTraite() {
+        ResultSet resultEquipment = null;
+
+        // The SQL query to retrieve the desired data
+        String query = "SELECT " +
+                "equipment.marque, " +
+                "equipment.designation, " +
+                "equipment.service, " +
+                "panne.description " +
+                "FROM projmaintbio.panne " +
+                "LEFT JOIN projmaintbio.equipment " +
+                "ON panne.idequipment = equipment.idequipment " +
+                "WHERE panne.statut = 'non traite'";
+
+        try {
+            // Prepare the statement and execute the query
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            resultEquipment = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log SQL exceptions
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace(); // Log class not found exceptions
+        }
+
+        return resultEquipment;
+    }*/
+
+    public static ResultSet getEquipmentWithPanneNonTraite() {
+        ResultSet resultEquipment = null;
+
+        String query = "SELECT " +
+                "equipment.marque, " +
+                "equipment.designation, " +
+                "equipment.service, " +
+                "panne.description, " +
+                "intervention.idintervention, " +
+                "intervention.transmitted " +
+                "FROM projmaintbio.panne " +
+                "LEFT JOIN projmaintbio.equipment " +
+                "ON panne.idequipment = equipment.idequipment " +
+                "LEFT JOIN projmaintbio.intervention " +
+                "ON panne.idpanne = intervention.idpanneI " +
+                "WHERE panne.statut = 'non traite'";
+
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            resultEquipment = preparedStatement.executeQuery();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultEquipment;
+    }
+
+    public Map<String, Integer> getPanneCountByService() throws SQLException, ClassNotFoundException {
+        String query = """
+        SELECT e.service, COUNT(p.idpanne) AS panne_count
+        FROM panne p
+        INNER JOIN equipment e ON p.idequipment = e.idequipment
+        GROUP BY e.service
+    """;
+
+        Map<String, Integer> panneCountByService = new HashMap<>();
+
+        try (Connection conn = getDbConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String service = resultSet.getString("service");
+                int panneCount = resultSet.getInt("panne_count");
+                panneCountByService.put(service, panneCount);
+            }
+        }
+
+        return panneCountByService;
+    }
+
+    public Map<String, Integer> getInterventionCountByService() throws SQLException, ClassNotFoundException {
+        String query = """
+        SELECT e.service, COUNT(i.idintervention) AS intervention_count
+        FROM intervention i
+        INNER JOIN panne p ON i.idpanneI = p.idpanne
+        INNER JOIN equipment e ON p.idequipment = e.idequipment
+        GROUP BY e.service
+    """;
+
+        Map<String, Integer> interventionCountByService = new HashMap<>();
+
+        try (Connection conn = DBHandler.getDbConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String service = resultSet.getString("service");
+                int interventionCount = resultSet.getInt("intervention_count");
+                interventionCountByService.put(service, interventionCount);
+            }
+        }
+
+        return interventionCountByService;
+    }
+
+
 
     // Ajout de membre
     /*public void ajoutMembre(String nom, String prenom, String mail,
