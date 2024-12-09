@@ -125,7 +125,25 @@ public class CellPanneController extends JFXListCell<PanneEquipmentData> impleme
 
             });
 
-            deleteBtn.setOnMouseClicked(event -> {
+            /*deleteBtn.setOnMouseClicked(event -> {
+
+                *//*FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("validateInterventionView.fxml"));
+
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Parent root = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+
+                ValidateInterventionController  validateInterventionController = loader.getController();
+                validateInterventionController.setRappTF(PanneEquipmentData.getRappInterv());*//*
+
+
                 try {
                     databaseHandler.validateInterventionAndUpdatePanne(myInterventon.getInterventionId());
                     //System.out.println("ID Equipment "+ equipmtId);
@@ -141,7 +159,45 @@ public class CellPanneController extends JFXListCell<PanneEquipmentData> impleme
 
                 getListView().getItems().remove(getItem());
 
+            });*/
+
+            deleteBtn.setOnMouseClicked(event -> {
+                try {
+                    // Load the ValidateInterventionView
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("validateInterventionView.fxml"));
+                    Parent root = loader.load();
+
+                    // Get the controller for ValidateInterventionView
+                    ValidateInterventionController validateInterventionController = loader.getController();
+
+                    // Pass intervention ID to the controller
+                    validateInterventionController.setInterventionId(myInterventon.getInterventionId());
+
+                    // Show the view
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait(); // Wait for the user to complete action in the view
+
+                    // After the window is closed, process validation and update
+                    if (validateInterventionController.isValidated()) {
+                        String comment = validateInterventionController.getRappTF();
+
+                        // Validate the intervention and update the panne table with the comment
+                        databaseHandler.validateInterventionAndUpdatePanneWithComment(myInterventon.getInterventionId(), comment);
+
+                        // Update the button image to indicate validation
+                        Image validatedImage = new Image(getClass().getResourceAsStream("/validerSet.png"));
+                        deleteBtn.setImage(validatedImage);
+
+                        // Remove the item from the ListView
+                        getListView().getItems().remove(getItem());
+                    }
+
+                } catch (IOException | SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             });
+
 
             setText(null);
             setGraphic(rootPane);

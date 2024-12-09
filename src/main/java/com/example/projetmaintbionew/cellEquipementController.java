@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -111,34 +112,63 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
                 updateEquipmentController.setModModeleTf(myEquipmt.getModel());
                 updateEquipmentController.setModMarqueTf(myEquipmt.getMarque());
                 updateEquipmentController.setModNumbseriTf(myEquipmt.getNumserie());
-/*
-                updateEquipmentController.setModAnneServiceTf(myEquipmt.getAnneAcquis());
-*/
+
 
                 updateEquipmentController.getModBtnAddValidate().setOnAction(event1 -> {
-
-                    Calendar calendar = Calendar.getInstance();
-
-                    java.sql.Timestamp timestamp =
-                            new java.sql.Timestamp(calendar.getTimeInMillis());
-
                     try {
+                        // Comparer les champs actuels avec les champs saisis
+                        /*String newDesignation = !updateEquipmentController.getModDesignationTf().equals(myEquipmt.getDesignation())
+                                ? updateEquipmentController.getModDesignationTf()
+                                : null;*/
 
-                        //System.out.println("EquipId " + myEquipmt.getEquipmentId());
+                        String newDesignation = updateEquipmentController.getModDesignationTf() != null &&
+                                !updateEquipmentController.getModDesignationTf().equals(myEquipmt.getDesignation())
+                                ? updateEquipmentController.getModDesignationTf()
+                                : null;
 
-                        databaseHandler.updateEquipment(updateEquipmentController.getModDesignationTf(), updateEquipmentController.getModModeleTf(),
-                                updateEquipmentController.getModMarqueTf(), updateEquipmentController.getModNumbseriTf(),
-                                myEquipmt.getEquipmentId());
+                        String newModel = updateEquipmentController.getModModeleTf() != null &&
+                                !updateEquipmentController.getModModeleTf().equals(myEquipmt.getModel())
+                                ? updateEquipmentController.getModModeleTf()
+                                : null;
 
-                        //update our listController
-                        // updateTaskController.refreshList();
-                    } catch (SQLException e) {
+                        String newMarque = updateEquipmentController.getModMarqueTf() != null &&
+                                !updateEquipmentController.getModMarqueTf().equals(myEquipmt.getMarque())
+                                ? updateEquipmentController.getModMarqueTf()
+                                : null;
+
+                        /*String newMarque = !updateEquipmentController.getModMarqueTf().equals(myEquipmt.getMarque())
+                                ? updateEquipmentController.getModMarqueTf()
+                                : null;*/
+
+                        /*String newNumSer = !updateEquipmentController.getModNumbseriTf().equals(myEquipmt.getNumserie())
+                                ? updateEquipmentController.getModNumbseriTf()
+                                : null;*/
+
+                        String newNumSer = updateEquipmentController.getModNumbseriTf() != null &&
+                                !updateEquipmentController.getModNumbseriTf().equals(myEquipmt.getNumserie())
+                                ? updateEquipmentController.getModNumbseriTf()
+                                : null;
+
+                        // Appel de la méthode updateEquipment avec les nouveaux champs
+                        databaseHandler.updateEquipment(newDesignation, newModel, newMarque, newNumSer, myEquipmt.getEquipmentId());
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("SUCCES");
+                        alert.setHeaderText(null);
+                        alert.setContentText("L'équipement a bien été modifié!");
+                        alert.showAndWait();
+
+                    } catch (SQLException | ClassNotFoundException e) {
                         e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur");
+                        alert.setHeaderText("Echec de mise à jour");
+                        alert.setContentText("Une erreur s'est produite lors de la modification de l'équipement . Veuillez réessayer à nouveau.");
+                        alert.showAndWait();
                     }
-
                 });
+
 
                 stage.setTitle("Modifier un équipement");
 

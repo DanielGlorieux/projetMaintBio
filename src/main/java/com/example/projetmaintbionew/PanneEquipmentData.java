@@ -15,6 +15,8 @@ public class PanneEquipmentData {
     private String marque;
     private String designation;
 
+    private static String rappInterv;
+
     private String lieuAff;
 
     public PanneEquipmentData(String designation, String marque, String description, String statut,String type) {
@@ -45,6 +47,18 @@ public class PanneEquipmentData {
         this.lieuAff = lieuAff;
         this.interventionId = interventionId;
         this.transmitted = transmitted;
+    }
+
+    public PanneEquipmentData(String designation, String marque, String description, String statut,String type, String rappInterv) {
+        this.description = description;
+        this.marque = marque;
+        this.designation = designation;
+        this.statut = statut;
+        this.type = type;
+        this.lieuAff = lieuAff;
+        this.interventionId = interventionId;
+        this.transmitted = transmitted;
+        this.rappInterv = rappInterv;
     }
 
     public PanneEquipmentData() {
@@ -102,6 +116,14 @@ public class PanneEquipmentData {
 
     public boolean isTransmitted() {
         return transmitted;
+    }
+
+    public static String getRappInterv() {
+        return rappInterv;
+    }
+
+    public void setRappInterv(String rappInterv) {
+        this.rappInterv = rappInterv;
     }
 }
 

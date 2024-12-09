@@ -50,19 +50,111 @@ public class AjouterEquipementController implements Initializable {
     private MenuItem miEtatEquipPass;
 
     @FXML
-    private MenuItem miSalleAff1;
-
+    private MenuItem miSalleOp;
     @FXML
-    private MenuItem miSalleAff2;
-
+    private MenuItem miSalleReveil;
     @FXML
-    private MenuItem miSalleAff3;
-
+    private MenuItem miSalleSterilisation;
     @FXML
-    private MenuItem miSalleAff4;
-
+    private MenuItem miBureauSUS;
     @FXML
-    private MenuItem miSalleAff5;
+    private MenuItem miBureauChefService;
+    @FXML
+    private MenuItem miBureauMedecin;
+    @FXML
+    private MenuItem miBureauAnesthesistes;
+    @FXML
+    private MenuItem miSallePreparationPatients;
+    @FXML
+    private MenuItem miSalleGarde;
+    @FXML
+    private MenuItem miSAS;
+    @FXML
+    private MenuItem miVestiaire;
+    @FXML
+    private MenuItem miMagasin;
+    @FXML
+    private MenuItem miSalleTravail;
+    @FXML
+    private MenuItem miBoxAccouchement;
+    @FXML
+    private MenuItem miPoolSurveillance;
+    @FXML
+    private MenuItem miSallePansement;
+    @FXML
+    private MenuItem miBureauSageFemme;
+    @FXML
+    private MenuItem miBureauInfirmier;
+    @FXML
+    private MenuItem miSalleStagiaire;
+    @FXML
+    private MenuItem miSalleStaff;
+    @FXML
+    private MenuItem miSalleEchographie;
+    @FXML
+    private MenuItem miSalleVidoir;
+    @FXML
+    private MenuItem miSalleNettoyageDesinfection;
+    @FXML
+    private MenuItem miBoxPrematures;
+    @FXML
+    private MenuItem miSalleHospitalisation;
+    @FXML
+    private MenuItem miSalleObservation;
+    @FXML
+    private MenuItem miSoinsInfirmiers;
+    @FXML
+    private MenuItem miSallePremiersSoins;
+    @FXML
+    private MenuItem miSalleTri;
+    @FXML
+    private MenuItem miSalleDechoquage;
+    @FXML
+    private MenuItem miSalleBiochimie;
+    @FXML
+    private MenuItem miSalleHematologie;
+    @FXML
+    private MenuItem miSalleImmunologie;
+    @FXML
+    private MenuItem miSalleBiologieMoleculaire;
+    @FXML
+    private MenuItem miSallePrelevements;
+    @FXML
+    private MenuItem miSalleBacteriologie;
+    @FXML
+    private MenuItem miSalleParasitologie;
+    @FXML
+    private MenuItem miLaverieSterilisation;
+    @FXML
+    private MenuItem miSallePreparationMilieuxCulture;
+    @FXML
+    private MenuItem miSalleBanqueSang;
+    @FXML
+    private MenuItem miSalleOsPoumon;
+    @FXML
+    private MenuItem miSalleMammographiePanoramiqueDentaire;
+    @FXML
+    private MenuItem miSalleTelecommandee;
+    @FXML
+    private MenuItem miSalleManipulation;
+    @FXML
+    private MenuItem miSalleInterpretationGenerale;
+    @FXML
+    private MenuItem miLocalReprographie;
+    @FXML
+    private MenuItem miSalleScanner;
+    @FXML
+    private MenuItem miSalleInterpretation;
+    @FXML
+    private MenuItem miAttenteGrabataires;
+    @FXML
+    private MenuItem miSalleEchographie1;
+    @FXML
+    private MenuItem miSalleEchographie2;
+    @FXML
+    private MenuItem miBureauRadiologue;
+    @FXML
+    private MenuItem miSalleIntrusionIRM;
 
     @FXML
     private MenuItem miServAffBlocOp;
@@ -138,11 +230,59 @@ public class AjouterEquipementController implements Initializable {
         miServAffPed.setOnAction(event -> setSelectedServiceAff("Pediatrie"));
         miServAffUrg.setOnAction(event -> setSelectedServiceAff("Urgences"));
 
-        miSalleAff1.setOnAction(event -> setSelectedSalleAff("Salle1"));
-        miSalleAff2.setOnAction(event -> setSelectedSalleAff("Salle2"));
-        miSalleAff3.setOnAction(event -> setSelectedSalleAff("Salle3"));
-        miSalleAff4.setOnAction(event -> setSelectedSalleAff("Salle4"));
-        miSalleAff5.setOnAction(event -> setSelectedSalleAff("Salle5"));
+        miSalleOp.setOnAction(event -> setSelectedSalleAff("Salle d’opération"));
+        miSalleReveil.setOnAction(event -> setSelectedSalleAff("Salle de réveil"));
+        miSalleSterilisation.setOnAction(event -> setSelectedSalleAff("Salle de stérilisation"));
+        miBureauSUS.setOnAction(event -> setSelectedSalleAff("Bureau du SUS"));
+        miBureauChefService.setOnAction(event -> setSelectedSalleAff("Bureau du chef de service"));
+        miBureauMedecin.setOnAction(event -> setSelectedSalleAff("Bureau médecin"));
+        miBureauAnesthesistes.setOnAction(event -> setSelectedSalleAff("Bureau des anesthésistes"));
+        miSallePreparationPatients.setOnAction(event -> setSelectedSalleAff("Salle de préparation des patients"));
+        miSalleGarde.setOnAction(event -> setSelectedSalleAff("Salle de garde"));
+        miSAS.setOnAction(event -> setSelectedSalleAff("SAS"));
+        miVestiaire.setOnAction(event -> setSelectedSalleAff("Vestiaire"));
+        miMagasin.setOnAction(event -> setSelectedSalleAff("Magasin"));
+        miSalleTravail.setOnAction(event -> setSelectedSalleAff("Salle de travail"));
+        miBoxAccouchement.setOnAction(event -> setSelectedSalleAff("Boxe d’accouchement"));
+        miPoolSurveillance.setOnAction(event -> setSelectedSalleAff("Pool de surveillance technique"));
+        miSallePansement.setOnAction(event -> setSelectedSalleAff("Salle de pansement"));
+        miBureauSageFemme.setOnAction(event -> setSelectedSalleAff("Bureau sage femme"));
+        miBureauInfirmier.setOnAction(event -> setSelectedSalleAff("Bureau infirmier"));
+        miSalleStagiaire.setOnAction(event -> setSelectedSalleAff("Salle stagiaire"));
+        miSalleStaff.setOnAction(event -> setSelectedSalleAff("Salle de staff"));
+        miSalleEchographie.setOnAction(event -> setSelectedSalleAff("Salle d’échographie"));
+        miSalleVidoir.setOnAction(event -> setSelectedSalleAff("Salle de vidoir"));
+        miSalleNettoyageDesinfection.setOnAction(event -> setSelectedSalleAff("Salle de nettoyage et désinfection"));
+        miBoxPrematures.setOnAction(event -> setSelectedSalleAff("Box des prématurés"));
+        miSalleHospitalisation.setOnAction(event -> setSelectedSalleAff("Salle d’hospitalisation"));
+        miSalleObservation.setOnAction(event -> setSelectedSalleAff("Salle d’observation"));
+        miSoinsInfirmiers.setOnAction(event -> setSelectedSalleAff("Soins infirmiers"));
+        miSallePremiersSoins.setOnAction(event -> setSelectedSalleAff("Salle de premiers soins"));
+        miSalleTri.setOnAction(event -> setSelectedSalleAff("Salle de tri"));
+        miSalleDechoquage.setOnAction(event -> setSelectedSalleAff("Salle de déchoquage"));
+        miSalleBiochimie.setOnAction(event -> setSelectedSalleAff("Salle de biochimie"));
+        miSalleHematologie.setOnAction(event -> setSelectedSalleAff("Salle d’hématologie"));
+        miSalleImmunologie.setOnAction(event -> setSelectedSalleAff("Salle d’immunologie"));
+        miSalleBiologieMoleculaire.setOnAction(event -> setSelectedSalleAff("Salle de biologie moléculaire"));
+        miSallePrelevements.setOnAction(event -> setSelectedSalleAff("Salle de prélèvements"));
+        miSalleBacteriologie.setOnAction(event -> setSelectedSalleAff("Salle de bactériologie"));
+        miSalleParasitologie.setOnAction(event -> setSelectedSalleAff("Salle de parasitologie"));
+        miLaverieSterilisation.setOnAction(event -> setSelectedSalleAff("Laverie + stérilisation"));
+        miSallePreparationMilieuxCulture.setOnAction(event -> setSelectedSalleAff("Salle de préparation des milieux de culture"));
+        miSalleBanqueSang.setOnAction(event -> setSelectedSalleAff("Salle de banque de sang"));
+        miSalleOsPoumon.setOnAction(event -> setSelectedSalleAff("Salle os/poumon"));
+        miSalleMammographiePanoramiqueDentaire.setOnAction(event -> setSelectedSalleAff("Salle de mammographie + panoramique dentaire"));
+        miSalleTelecommandee.setOnAction(event -> setSelectedSalleAff("Salle télécommandée"));
+        miSalleManipulation.setOnAction(event -> setSelectedSalleAff("Salle de manipulation"));
+        miSalleInterpretationGenerale.setOnAction(event -> setSelectedSalleAff("Salle d’interprétation générale"));
+        miLocalReprographie.setOnAction(event -> setSelectedSalleAff("Local reprographie"));
+        miSalleScanner.setOnAction(event -> setSelectedSalleAff("Salle scanner"));
+        miSalleInterpretation.setOnAction(event -> setSelectedSalleAff("Salle d’interprétation"));
+        miAttenteGrabataires.setOnAction(event -> setSelectedSalleAff("Attente malades grabataires"));
+        miSalleEchographie1.setOnAction(event -> setSelectedSalleAff("Salle d’échographie 1"));
+        miSalleEchographie2.setOnAction(event -> setSelectedSalleAff("Salle d’échographie 2"));
+        miBureauRadiologue.setOnAction(event -> setSelectedSalleAff("Bureau radiologue"));
+        miSalleIntrusionIRM.setOnAction(event -> setSelectedSalleAff("Salle d’intrusion pour IRM"));
 
         btnAddValidate.setOnAction(new EventHandler<ActionEvent>() {
             @Override

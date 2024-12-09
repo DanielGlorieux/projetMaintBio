@@ -7,7 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DBHandler extends Configuration{
@@ -156,7 +158,7 @@ public class DBHandler extends Configuration{
         preparedStatement.close();
     }
 
-    public void updateEquipment(String designation, String model, String marque, String numSer, int equipId) throws SQLException, ClassNotFoundException {
+    /*public void updateEquipment(String designation, String model, String marque, String numSer, int equipId) throws SQLException, ClassNotFoundException {
 
         String query = "UPDATE equipment SET designation=?, modele=?, marque=?, num_serie=? WHERE idequipment=?";
 
@@ -170,7 +172,48 @@ public class DBHandler extends Configuration{
         preparedStatement.executeUpdate();
         preparedStatement.close();
 
+    }*/
+
+
+    public void updateEquipment(String designation, String model, String marque, String numSer, int equipId) throws SQLException, ClassNotFoundException {
+        // Base de la requête
+        StringBuilder queryBuilder = new StringBuilder("UPDATE equipment SET ");
+        List<Object> parameters = new ArrayList<>();
+
+        // Ajout dynamique des colonnes modifiées
+        if (designation != null) {
+            queryBuilder.append("designation=?, ");
+            parameters.add(designation);
+        }
+        if (model != null) {
+            queryBuilder.append("modele=?, ");
+            parameters.add(model);
+        }
+        if (marque != null) {
+            queryBuilder.append("marque=?, ");
+            parameters.add(marque);
+        }
+        if (numSer != null) {
+            queryBuilder.append("num_serie=?, ");
+            parameters.add(numSer);
+        }
+
+        // Supprimez la dernière virgule et espace
+        queryBuilder.setLength(queryBuilder.length() - 2);
+        queryBuilder.append(" WHERE idequipment=?");
+        parameters.add(equipId);
+
+        // Préparation de la requête
+        String query = queryBuilder.toString();
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(query)) {
+            for (int i = 0; i < parameters.size(); i++) {
+                preparedStatement.setObject(i + 1, parameters.get(i));
+            }
+
+            preparedStatement.executeUpdate();
+        }
     }
+
 
 
 
@@ -209,7 +252,8 @@ public class DBHandler extends Configuration{
         equipment.designation, 
         panne.description, 
         panne.type, 
-        panne.statut 
+        panne.statut, 
+        panne.rappInterv 
         FROM projmaintbio.panne 
         LEFT JOIN projmaintbio.equipment 
         ON panne.idequipment = equipment.idequipment
@@ -225,10 +269,11 @@ public class DBHandler extends Configuration{
                 String designation = resultSet.getString("designation");
                 String type = resultSet.getString("type");
                 String statut = resultSet.getString("statut");
+                String rappIntervention = resultSet.getString("rappInterv");
 
 
                 // Add data to the observable list
-                data.add(new PanneEquipmentData(designation, marque,description, statut, type));
+                data.add(new PanneEquipmentData(designation, marque,description, statut, type, rappIntervention));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -398,7 +443,7 @@ public class DBHandler extends Configuration{
 
         ResultSet resultPanne = null;
 
-        String query = "SELECT * FROM panne";
+        String query = "SELECT * FROM panne WHERE statut = 'non traite'";
 
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
@@ -586,6 +631,46 @@ public class DBHandler extends Configuration{
         }
 
         return interventionCountByService;
+    }
+
+    public void validateInterventionAndUpdatePanneWithComment(int intId, String comment) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement updateInterventionStmt = null;
+        PreparedStatement updatePanneStmt = null;
+
+        try {
+            conn = getDbConnection();
+            conn.setAutoCommit(false); // Begin transaction
+
+            // Update the intervention table
+            String updateInterventionQuery = "UPDATE intervention SET valide = 'oui' WHERE idintervention = ?";
+            updateInterventionStmt = conn.prepareStatement(updateInterventionQuery);
+            updateInterventionStmt.setInt(1, intId);
+            updateInterventionStmt.executeUpdate();
+
+            // Update the panne table with the status and comment
+            String updatePanneQuery = """
+            UPDATE panne 
+            SET statut = 'traite', rappInterv = ? 
+            WHERE idpanne = (SELECT idpanneI FROM intervention WHERE idintervention = ?)
+        """;
+            updatePanneStmt = conn.prepareStatement(updatePanneQuery);
+            updatePanneStmt.setString(1, comment);
+            updatePanneStmt.setInt(2, intId);
+            updatePanneStmt.executeUpdate();
+
+            conn.commit(); // Commit transaction
+        } catch (SQLException e) {
+            if (conn != null) {
+                conn.rollback(); // Rollback transaction in case of error
+            }
+            throw e; // Re-throw exception for higher-level handling
+        } finally {
+            // Close resources
+            if (updateInterventionStmt != null) updateInterventionStmt.close();
+            if (updatePanneStmt != null) updatePanneStmt.close();
+            if (conn != null) conn.setAutoCommit(true); // Reset auto-commit
+        }
     }
 
 

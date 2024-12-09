@@ -295,7 +295,7 @@ public class UpdateEquipmentFormController implements Initializable {
     }*/
 
     public String getModDesignationTf() {
-        return this.modDesignationTf.getText().trim();
+        return this.modDesignationTf.getText();
     }
 
     /*public void setModDesignationTf(JFXTextField modDesignationTf) {
@@ -311,7 +311,7 @@ public class UpdateEquipmentFormController implements Initializable {
     }*/
 
     public String getModMarqueTf() {
-        return this.modMarqueTf.getText().trim();
+        return this.modMarqueTf.getText();
     }
 
     /*public void setModMarqueTf(JFXTextField modMarqueTf) {
@@ -327,7 +327,7 @@ public class UpdateEquipmentFormController implements Initializable {
     }*/
 
     public String getModModeleTf() {
-        return this.modModeleTf.getText().trim();
+        return this.modModeleTf.getText();
     }
 
     /*public void setModModeleTf(JFXTextField modModeleTf) {
@@ -343,7 +343,7 @@ public class UpdateEquipmentFormController implements Initializable {
     }*/
 
     public String getModNumbseriTf() {
-        return this.modNumbseriTf.getText().trim();
+        return this.modNumbseriTf.getText();
     }
 
 

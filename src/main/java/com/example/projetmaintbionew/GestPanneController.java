@@ -34,6 +34,9 @@ public class GestPanneController implements Initializable {
     private TableColumn<PanneEquipmentData, String> tcStatut;
 
     @FXML
+    private TableColumn<PanneEquipmentData, String> tcRappInt;
+
+    @FXML
     private TableColumn<PanneEquipmentData, String> tcTypeP;
 
 
@@ -47,6 +50,7 @@ public class GestPanneController implements Initializable {
         tcDescript.setCellValueFactory(new PropertyValueFactory<>("description"));
         tcTypeP.setCellValueFactory(new PropertyValueFactory<>("type"));
         tcStatut.setCellValueFactory(new PropertyValueFactory<>("statut"));
+        tcRappInt.setCellValueFactory(new PropertyValueFactory<>("rappInterv"));
 
         ObservableList<PanneEquipmentData> data = dbHandler.getPanneAndEquipmentData();
         tbPanne.setItems(data);

@@ -11,11 +11,12 @@
          <children>
             <TableView fx:id="tbPanne" prefHeight="526.0" prefWidth="779.0">
               <columns>
-                <TableColumn fx:id="tcDesignation" prefWidth="150.0" text="Designation" />
-                  <TableColumn fx:id="tcMarque" prefWidth="120.0" text="Marque" />
-                <TableColumn fx:id="tcDescript" prefWidth="150.0" text="Description de la panne" />
-                  <TableColumn fx:id="tcTypeP" prefWidth="150.0" text="Type de la panne" />
-                  <TableColumn fx:id="tcStatut" prefWidth="130.0" text="Statut de la panne" />
+                <TableColumn fx:id="tcDesignation" prefWidth="110.0" text="Designation" />
+                  <TableColumn fx:id="tcMarque" prefWidth="100.0" text="Marque" />
+                <TableColumn fx:id="tcDescript" prefWidth="140.0" text="Description de la panne" />
+                  <TableColumn fx:id="tcTypeP" prefWidth="110.0" text="Type de la panne" />
+                  <TableColumn fx:id="tcStatut" prefWidth="120.0" text="Statut de la panne" />
+                  <TableColumn fx:id="tcRappInt" prefWidth="120.0" text="Rapport intervention" />
               </columns>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="20.0" />

@@ -45,7 +45,7 @@ public class StatisticsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //compteur homme et femme
+
         int cptEquipment = 0;
         int cptPanne = 0;
 
