@@ -53,6 +53,9 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
     @FXML
     private ImageView signPanneBtn;
 
+    @FXML
+    private Label prevLabel;
+
     private FXMLLoader fxmlLoader;
 
     private DBHandler databaseHandler;
@@ -88,6 +91,7 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
             etatLabel.setText(myEquipmt.getEtat());
             serviceLabel.setText(myEquipmt.getService());
             dateAjLabel.setText(myEquipmt.getAnneAcquis().toString());
+            //prevLabel.setText(myEquipmt.getPrevDate());
 
             int equipmtId = myEquipmt.getEquipmentId();
 
@@ -112,6 +116,7 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
                 updateEquipmentController.setModModeleTf(myEquipmt.getModel());
                 updateEquipmentController.setModMarqueTf(myEquipmt.getMarque());
                 updateEquipmentController.setModNumbseriTf(myEquipmt.getNumserie());
+                //updateEquipmentController.setServiceAffectation(myEquipmt.getServiceAffectation());
 
 
                 updateEquipmentController.getModBtnAddValidate().setOnAction(event1 -> {
@@ -149,8 +154,31 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
                                 ? updateEquipmentController.getModNumbseriTf()
                                 : null;
 
+                        //String newSalleAff = updateEquipmentController.getSelectedSalleAff();
+
+                        String newSalleAff = updateEquipmentController.getModSalleAffMb() != null &&
+                                !updateEquipmentController.getModSalleAffMb().getText().equals(myEquipmt.getSalleAff())
+                                ? updateEquipmentController.getSelectedSalleAff()
+                                : null;
+
+                        String newServAff = updateEquipmentController.getModServAffMb() != null &&
+                                !updateEquipmentController.getModServAffMb().getText().equals(myEquipmt.getService())
+                                ? updateEquipmentController.getSelectedServAff()
+                                : null;
+
+                        String newSourceAcq = updateEquipmentController.getModSrcAcquisMb() != null &&
+                                !updateEquipmentController.getModSrcAcquisMb().getText().equals(myEquipmt.getSourceAcquis())
+                                ? updateEquipmentController.getSelectedSourceAcquis()
+                                : null;
+
+                        String newEtatAcq = updateEquipmentController.getModEtatEquipMb() != null &&
+                                !updateEquipmentController.getModEtatEquipMb().getText().equals(myEquipmt.getEtat())
+                                ? updateEquipmentController.getSelectedEtatEquip()
+                                : null;
+
+
                         // Appel de la méthode updateEquipment avec les nouveaux champs
-                        databaseHandler.updateEquipment(newDesignation, newModel, newMarque, newNumSer, myEquipmt.getEquipmentId());
+                        databaseHandler.updateEquipment(newDesignation, newModel, newMarque, newNumSer, newSalleAff, newServAff, newSourceAcq, newEtatAcq, myEquipmt.getEquipmentId());
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("SUCCES");
@@ -224,9 +252,9 @@ public class cellEquipementController extends JFXListCell<Equipement> implements
             });*/
 
             deleteBtn.setOnMouseClicked(event -> {
+                System.out.println("Identifiant de l'équipement : " + equipmtId);
                 try {
                     databaseHandler.deleteEquipment(equipmtId);
-                    //System.out.println("ID Equipment "+ equipmtId);
 
                 } catch (SQLException e) {
                     e.printStackTrace();

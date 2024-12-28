@@ -1,12 +1,13 @@
 package com.example.projetmaintbionew;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Equipement {
 
     private int userId;
     private int equipmentId;
-    private Timestamp anneAcquis;
+    private Date anneAcquis;
     private int anneMisServ;
     private String designation;
     private String marque;
@@ -16,6 +17,7 @@ public class Equipement {
     private String etat;
     private String service;
     private String salleAff;
+
 
     private String panne;
 
@@ -30,7 +32,7 @@ public class Equipement {
         this.panne = panne;
     }
 
-    public Equipement(int userId, int equipmentId, Timestamp anneAcquis, int anneMisServ, String designation, String marque, String model, String numserie, String sourceAcquis, String etat, String service, String salleAff) {
+    public Equipement(int userId, int equipmentId, Date anneAcquis, int anneMisServ, String designation, String marque, String model, String numserie, String sourceAcquis, String etat, String service, String salleAff) {
         this.userId = userId;
         this.equipmentId = equipmentId;
         this.anneAcquis = anneAcquis;
@@ -45,11 +47,14 @@ public class Equipement {
         this.salleAff = salleAff;
     }
 
+
+
     public Equipement(String marque, String numserie, String panne) {
         this.marque = marque;
         this.numserie = numserie;
         this.panne = panne;
     }
+
 
     public int getUserId() {
         return userId;
@@ -67,11 +72,11 @@ public class Equipement {
         this.equipmentId = equipmentId;
     }
 
-    public Timestamp getAnneAcquis() {
+    public Date getAnneAcquis() {
         return anneAcquis;
     }
 
-    public void setAnneAcquis(Timestamp anneAcquis) {
+    public void setAnneAcquis(Date anneAcquis) {
         this.anneAcquis = anneAcquis;
     }
 

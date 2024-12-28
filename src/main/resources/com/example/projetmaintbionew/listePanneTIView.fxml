@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.ListePanneTIController">
+    <children>
+        <VBox prefHeight="140.0" prefWidth="802.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="802.0" style="-fx-background-color: #D2F1CF;">
+               <children>
+                  <HBox prefHeight="200.0" prefWidth="802.0">
+                     <children>
+                        <HBox prefHeight="200.0" prefWidth="110.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="110.0" />
+                        <HBox layoutX="120.0" layoutY="10.0" prefHeight="200.0" prefWidth="110.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="56.0" prefWidth="148.0" text="Gestion des pannes" textAlignment="CENTER" underline="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="120.0" layoutY="10.0" prefHeight="200.0" prefWidth="110.0" />
+                        <HBox layoutX="231.0" layoutY="10.0" prefHeight="200.0" prefWidth="110.0" />
+                        <HBox layoutX="562.0" layoutY="10.0" prefHeight="200.0" prefWidth="110.0" />
+                     </children>
+                  </HBox>
+               </children></VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;" />
+            </children></VBox>
+        <JFXListView fx:id="listPanne" prefHeight="560.0" prefWidth="802.0" />
+    </children>
+</VBox>

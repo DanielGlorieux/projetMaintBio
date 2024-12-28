@@ -67,19 +67,24 @@ public class AdminPageController implements Initializable {
 
                 ResultSet userRow = DBHandler.getUser(user);
 
+                String profile1 = DBHandler.getUserProfile(loginText,loginPwd);
+
                 int counter = 0;
 
                 try {
                     while (userRow.next()) {
                         counter++;
                         String name = userRow.getString("name");
-                        userId = userRow.getInt("iduser");
-                        System.out.println("Welcome! " + name);
+                        int userIdFromDB = userRow.getInt("iduser");
+                       // System.out.println("Welcome! " + name);
+                        AppSession.getInstance().setUserId(userIdFromDB);
 
                     }
 
                     if (counter == 1) {
-                        showAddItemScreen();
+                        if (profile1.equals("Administrateur")){
+                            showAddItemScreen();
+                        }
                     }else {
                         Shaker userNameShaker = new Shaker(admN);
                         Shaker passwordShaker = new Shaker(admPwd);
@@ -114,9 +119,6 @@ public class AdminPageController implements Initializable {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-
-            /*AddItemController addItemController = loader.getController();
-            addItemController.setUserId(userId);*/
 
         stage.showAndWait();
     }

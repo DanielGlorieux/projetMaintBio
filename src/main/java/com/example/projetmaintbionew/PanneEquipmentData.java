@@ -15,9 +15,14 @@ public class PanneEquipmentData {
     private String marque;
     private String designation;
 
-    private static String rappInterv;
+    private String rappInterv;
 
     private String lieuAff;
+
+    private String prevDate;
+
+    private String intervenantNom;
+
 
     public PanneEquipmentData(String designation, String marque, String description, String statut,String type) {
         this.description = description;
@@ -49,7 +54,8 @@ public class PanneEquipmentData {
         this.transmitted = transmitted;
     }
 
-    public PanneEquipmentData(String designation, String marque, String description, String statut,String type, String rappInterv) {
+    public PanneEquipmentData(int interventionId, String designation, String marque, String description, String statut,String type, String lieuAff,
+                              boolean transmitted, String prevDate) {
         this.description = description;
         this.marque = marque;
         this.designation = designation;
@@ -58,15 +64,42 @@ public class PanneEquipmentData {
         this.lieuAff = lieuAff;
         this.interventionId = interventionId;
         this.transmitted = transmitted;
+        this.prevDate = prevDate;
+    }
+
+    public PanneEquipmentData(String designation, String marque, String description, String statut,String type, String rappInterv) {
+        this.description = description;
+        this.marque = marque;
+        this.designation = designation;
+        this.statut = statut;
+        this.type = type;
+        //this.lieuAff = lieuAff;
+        //this.interventionId = interventionId;
+        //this.transmitted = transmitted;
         this.rappInterv = rappInterv;
+    }
+
+    public String getIntervenantNom() {
+        return intervenantNom;
+    }
+
+    public void setIntervenantNom(String intervenantNom) {
+        this.intervenantNom = intervenantNom;
     }
 
     public PanneEquipmentData() {
     }
 
+    public String getPrevDate() {
+        return prevDate;
+    }
+
+    public void setPrevDate(String prevDate) {
+        this.prevDate = prevDate;
+    }
+
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-
 
     public String getMarque() { return marque; }
     public void setMarque(String marque) { this.marque = marque; }
@@ -118,8 +151,8 @@ public class PanneEquipmentData {
         return transmitted;
     }
 
-    public static String getRappInterv() {
-        return rappInterv;
+    public String getRappInterv() {
+        return this.rappInterv;
     }
 
     public void setRappInterv(String rappInterv) {

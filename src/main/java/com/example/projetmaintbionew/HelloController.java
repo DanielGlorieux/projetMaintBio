@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -87,11 +88,72 @@ public class HelloController implements Initializable {
                 user.setNom(loginText);
                 user.setCode(loginPwd);
 
+                String profile1 = DBHandler.getUserProfile(loginText,loginPwd);
+
+                //System.out.println("Profile :" + profile1);
+
                 ResultSet userRow = DBHandler.getUser(user);
 
                 int counter = 0;
 
+                /*try {
+                    if (userRow != null && userRow.next()) {
+                        String name = userRow.getString("name");
+                        String profile = userRow.getString("profile");
+                        userId = userRow.getInt("iduser");
+
+
+                        // Pass data to the main page
+                        showMainPage(name, profile);
+                    } else {
+                        // Shake inputs on invalid login
+                        Shaker userNameShaker = new Shaker(usrN);
+                        Shaker passwordShaker = new Shaker(usrPwd);
+                        userNameShaker.shake();
+                        passwordShaker.shake();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }*/
+
                 try {
+                    while (userRow.next()) {
+                        counter++;
+                        int userIdFromDB = userRow.getInt("iduser");
+                        //System.out.println("Retrieved userId: " + userIdFromDB);
+                        AppSession.getInstance().setUserId(userIdFromDB);
+
+                    }
+
+                    if (counter == 1) {
+
+                        if(profile1.equals("Utilisateur")){
+                            showMainPage(loginText,profile1);
+                        }
+                        if (profile1.equals("Technicien_Chef")){
+                            showMainPageTC(loginText,profile1);
+                        }
+
+                        if (profile1.equals("Technicien_Intervenant")){
+                            showMainPageTI(loginText,profile1);
+                        }
+
+                        //showAddItemScreen();
+
+                    }else {
+                        Shaker userNameShaker = new Shaker(usrN);
+                        Shaker passwordShaker = new Shaker(usrPwd);
+                        passwordShaker.shake();
+                        userNameShaker.shake();
+
+                    }
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                /*try {
                     while (userRow.next()) {
                         counter++;
                         String name = userRow.getString("name");
@@ -112,7 +174,7 @@ public class HelloController implements Initializable {
 
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                }
+                }*/
 
             }
         });
@@ -125,7 +187,7 @@ public class HelloController implements Initializable {
         btnCo.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(getClass().getResource("mainPageView.fxml"));
+        loader.setLocation(getClass().getResource("mainPageUserView.fxml"));
 
         try {
             loader.setRoot(loader.getRoot());
@@ -138,12 +200,97 @@ public class HelloController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
-        MainPageController mainPageController = loader.getController();
-        mainPageController.setUserId(userId);
+        /*MainPageController mainPageController = loader.getController();
+        mainPageController.setUserId(userId);*/
 
         Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
         stage.getIcons().add(ic);
 
         stage.showAndWait();
     }
+
+    private void showMainPage(String name, String profile) {
+        btnCo.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mainPageUserView.fxml"));
+            Parent root = loader.load();
+
+            //Node mainPageUserView = loader.load();
+
+
+            // Get controller and set data
+            MainPageUserController mainPageUserController = loader.getController();
+            mainPageUserController.setUsername(name);
+            mainPageUserController.setProfile(profile);
+            //controller.setProfile(profile);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+            stage.getIcons().add(ic);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showMainPageTC(String name, String profile) {
+        btnCo.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mainPageTCView.fxml"));
+            Parent root = loader.load();
+
+            //Node mainPageUserView = loader.load();
+
+
+            // Get controller and set data
+            MainPageTCController mainPageTCController = loader.getController();
+            mainPageTCController.setUsername(name);
+            mainPageTCController.setProfile(profile);
+            //mainPageTCController.setUserId(userId);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+            stage.getIcons().add(ic);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showMainPageTI(String name, String profile) {
+        btnCo.getScene().getWindow().hide();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mainPageTIView.fxml"));
+            Parent root = loader.load();
+
+            //Node mainPageUserView = loader.load();
+
+
+            // Get controller and set data
+            MainPageTIController mainPageTIController = loader.getController();
+            mainPageTIController.setUsername(name);
+            mainPageTIController.setProfile(profile);
+            //mainPageTCController.setUserId(userId);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            Image ic = new Image(getClass().getResource("/logoMaintBio1.png").toExternalForm());
+            stage.getIcons().add(ic);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -109,8 +110,8 @@
                      <children>
                         <MenuButton fx:id="typePanne" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Type " textFill="WHITE">
                            <items>
-                              <MenuItem fx:id="miMaintPred" mnemonicParsing="false" text="Maintenance prédictive" />
-                              <MenuItem fx:id="miPanneOcr" mnemonicParsing="false" text="Panne occurente" />
+                              <MenuItem fx:id="miMaintPred" mnemonicParsing="false" text="Maintenance préventive" />
+                              <MenuItem fx:id="miPanneOcr" mnemonicParsing="false" text="Maintenance  corrective" />
                            </items>
                            <font>
                               <Font size="13.3" />
@@ -119,7 +120,7 @@
                               <Insets left="125.0" top="12.0" />
                            </VBox.margin>
                         </MenuButton>
-                        <JFXTextArea fx:id="descPanneTf" prefHeight="70.0" prefWidth="802.0" promptText="Decrivez la panne">
+                        <JFXTextArea fx:id="descPanneTf" prefHeight="61.0" prefWidth="802.0" promptText="Description">
                            <padding>
                               <Insets left="125.0" right="125.0" />
                            </padding>
@@ -134,18 +135,19 @@
                   </VBox>
                   <VBox prefHeight="65.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="87.0" prefWidth="802.0">
-                           <children>
-                              <JFXButton fx:id="btnSignaler" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Signaler" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="325.0" top="20.0" />
-                                 </HBox.margin>
-                              </JFXButton>
-                           </children>
-                        </HBox>
+                        <DatePicker fx:id="planifDate" prefHeight="26.0" prefWidth="232.0" promptText="Planifier une date">
+                           <VBox.margin>
+                              <Insets left="125.0" top="12.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <JFXButton fx:id="btnSignaler" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Signaler" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="325.0" top="20.0" />
+                           </VBox.margin>
+                        </JFXButton>
                      </children>
                   </VBox>
                   <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />

@@ -43,7 +43,7 @@ public class ListPanneController implements Initializable {
     }
 
     private void loadInterventions() throws SQLException {
-        ResultSet resultSet = databaseHandler.getEquipmentWithPanneNonTraite();
+        ResultSet resultSet = databaseHandler.getEquipmentWithPanneNonTraite2();
 
         while (resultSet.next()) {
             PanneEquipmentData interv = new PanneEquipmentData();
@@ -53,6 +53,7 @@ public class ListPanneController implements Initializable {
             interv.setDescription(resultSet.getString("description"));
             interv.setInterventionId(resultSet.getInt("idintervention")); // Set the intervention ID
             interv.setTransmitted(resultSet.getBoolean("transmitted"));
+            interv.setPrevDate(resultSet.getString("datePlanif"));
             interventions.add(interv);
         }
     }

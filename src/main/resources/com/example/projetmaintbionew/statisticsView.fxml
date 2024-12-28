@@ -44,9 +44,9 @@
                <children>
                   <VBox prefHeight="443.0" prefWidth="802.0">
                      <children>
-                        <VBox prefHeight="302.0" prefWidth="402.0">
+                        <VBox prefHeight="653.0" prefWidth="402.0">
                            <children>
-                              <PieChart fx:id="pieChart" prefHeight="302.0" prefWidth="402.0" title="Equipement vs pannes en instance" titleSide="BOTTOM" />
+                              <PieChart fx:id="pieChart" prefHeight="484.0" prefWidth="402.0" title="Equipement vs pannes en instance" titleSide="BOTTOM" />
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" prefHeight="302.0" prefWidth="402.0" />
@@ -54,9 +54,9 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="443.0" prefWidth="802.0">
                      <children>
-                        <VBox prefHeight="302.0" prefWidth="402.0">
+                        <VBox prefHeight="591.0" prefWidth="402.0">
                            <children>
-                              <StackedBarChart fx:id="stackBarChar" prefHeight="302.0" prefWidth="402.0" title="Pannes et Interventions par service" titleSide="BOTTOM">
+                              <StackedBarChart fx:id="stackBarChar" prefHeight="502.0" prefWidth="402.0" title="Pannes et Interventions par service" titleSide="BOTTOM">
                                 <xAxis>
                                   <CategoryAxis label="Service" side="BOTTOM" fx:id="xAxe" />
                                 </xAxis>

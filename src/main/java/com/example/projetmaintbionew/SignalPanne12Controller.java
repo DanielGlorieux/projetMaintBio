@@ -8,12 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class SignalPanne12Controller implements Initializable {
@@ -41,14 +44,18 @@ public class SignalPanne12Controller implements Initializable {
     @FXML
     private JFXTextField numSerieTf;
 
+
+    @FXML
+    private DatePicker planifDate;
+
     @FXML
     private MenuButton typePanne;
     private String selectedType;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        miMaintPred.setOnAction(event -> setSelectedType("Maintenance prédictive"));
-        miPanneOcr.setOnAction(event -> setSelectedType("Panne occurente"));
+        miMaintPred.setOnAction(event -> setSelectedType("Maintenance préventive"));
+        miPanneOcr.setOnAction(event -> setSelectedType("Maintenance  corrective"));
 
 
         DBHandler dbHandler = new DBHandler();
@@ -61,11 +68,21 @@ public class SignalPanne12Controller implements Initializable {
                 String marqueAppText = marqueAppTf.getText().trim();
                 String descPanneText = descPanneTf.getText().trim();
                 String typeText = selectedType;
+                String datePlanif;
+
+                LocalDate dateVal = planifDate.getValue();
+
+                if (dateVal != null){
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    datePlanif = dateVal.format(formatter);
+                }else {
+                    datePlanif = null;
+                }
 
 
                 // Enregistrement dans la base de données
                 try {
-                    dbHandler.addPanne(descPanneText,numSerieText,marqueAppText, typeText);
+                    dbHandler.addPanne(descPanneText,numSerieText,marqueAppText, typeText, datePlanif);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (ClassNotFoundException e) {
@@ -76,6 +93,8 @@ public class SignalPanne12Controller implements Initializable {
                 numSerieTf.setText("");
                 marqueAppTf.setText("");
                 descPanneTf.setText("");
+                planifDate.setValue(null);
+
             }
         });
     }

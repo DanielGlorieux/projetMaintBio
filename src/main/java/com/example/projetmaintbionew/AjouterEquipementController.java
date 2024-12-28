@@ -289,8 +289,8 @@ public class AjouterEquipementController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 Calendar calendar = Calendar.getInstance();
 
-                java.sql.Timestamp timestamp =
-                        new java.sql.Timestamp(calendar.getTimeInMillis());
+                java.sql.Date timestamp =
+                        new java.sql.Date(calendar.getTimeInMillis());
 
                 String desigationText = designationTf.getText().trim();
                 String marqueText = marqueTf.getText().trim();
@@ -305,7 +305,7 @@ public class AjouterEquipementController implements Initializable {
 
                     //setUserId(GestionEquipementController.getUserId());
 
-                    equipement.setUserId(MainPageController.userId);
+                    //equipement.setUserId(MainPageController.userId);
                     equipement.setDesignation(desigationText);
                     equipement.setEtat(selectedEtatEquip);
                     equipement.setModel(modelText);
@@ -341,7 +341,7 @@ public class AjouterEquipementController implements Initializable {
             return year;
 
         } else {
-            System.out.println("No date selected");
+            //System.out.println("No date selected");
             return null;
         }
     }

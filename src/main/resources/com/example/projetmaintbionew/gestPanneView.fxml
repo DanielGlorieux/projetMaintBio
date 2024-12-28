@@ -11,15 +11,16 @@
          <children>
             <TableView fx:id="tbPanne" prefHeight="526.0" prefWidth="779.0">
               <columns>
-                <TableColumn fx:id="tcDesignation" prefWidth="110.0" text="Designation" />
-                  <TableColumn fx:id="tcMarque" prefWidth="100.0" text="Marque" />
-                <TableColumn fx:id="tcDescript" prefWidth="140.0" text="Description de la panne" />
-                  <TableColumn fx:id="tcTypeP" prefWidth="110.0" text="Type de la panne" />
-                  <TableColumn fx:id="tcStatut" prefWidth="120.0" text="Statut de la panne" />
-                  <TableColumn fx:id="tcRappInt" prefWidth="120.0" text="Rapport intervention" />
+                <TableColumn fx:id="tcDesignation" prefWidth="91.99999541044235" text="Designation" />
+                  <TableColumn fx:id="tcMarque" prefWidth="89.59998321533203" text="Marque" />
+                <TableColumn fx:id="tcDescript" prefWidth="105.60005187988281" text="Description de la panne" />
+                  <TableColumn fx:id="tcTypeP" prefWidth="114.4000244140625" text="Type de la panne" />
+                  <TableColumn fx:id="tcStatut" prefWidth="124.79995727539062" text="Statut de la panne" />
+                  <TableColumn fx:id="tcRappInt" prefWidth="132.79998779296875" text="Rapport intervention" />
+                  <TableColumn fx:id="tcIntervenant" prefWidth="132.79998779296875" text="Intervenant" />
               </columns>
                <VBox.margin>
-                  <Insets left="50.0" right="50.0" top="20.0" />
+                  <Insets left="1.0" right="1.0" top="20.0" />
                </VBox.margin>
             </TableView>
          </children></VBox>

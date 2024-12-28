@@ -10,8 +10,6 @@ public class Constantes {
     public static final String USER_PASSWORD = "password";
     public static final String USER_PROFILE = "profile";
 
-
-
     //Equipement Table Column Names
     public static final String EQUIPMENT_ID = "idequipment";
     public static final String EQUIPMENT_DESIGNATION = "designation";

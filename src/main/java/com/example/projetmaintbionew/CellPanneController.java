@@ -44,13 +44,14 @@ public class CellPanneController extends JFXListCell<PanneEquipmentData> impleme
     private Label marqueEquipementLabel;
 
     @FXML
-    private Label modelLabel;
+    private Label prevLabel;
 
     @FXML
     private Label modeleEquipementLabel;
 
     @FXML
     private HBox rootPane;
+
 
     private DBHandler databaseHandler;
 
@@ -87,6 +88,7 @@ public class CellPanneController extends JFXListCell<PanneEquipmentData> impleme
             modeleEquipementLabel.setText(myInterventon.getDesignation());
             lieuEquipementLabel.setText(myInterventon.getLieuAff());
             descPanneLabel.setText(myInterventon.getDescription());
+            prevLabel.setText(myInterventon.getPrevDate());
 
             int intId = myInterventon.getInterventionId();
 
@@ -182,8 +184,14 @@ public class CellPanneController extends JFXListCell<PanneEquipmentData> impleme
                     if (validateInterventionController.isValidated()) {
                         String comment = validateInterventionController.getRappTF();
 
+                        int userId = AppSession.getInstance().getUserId();
+
                         // Validate the intervention and update the panne table with the comment
-                        databaseHandler.validateInterventionAndUpdatePanneWithComment(myInterventon.getInterventionId(), comment);
+                        databaseHandler.validateInterventionAndUpdatePanneWithComment(myInterventon.getInterventionId(), comment, userId);
+
+
+
+                        //System.out.println("User Id : " + userId);
 
                         // Update the button image to indicate validation
                         Image validatedImage = new Image(getClass().getResourceAsStream("/validerSet.png"));

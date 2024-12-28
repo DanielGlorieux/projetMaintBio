@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestionUtilisateurUserController">
+    <children>
+        <VBox prefHeight="700.0" prefWidth="802.0" HBox.hgrow="ALWAYS">
+            <children>
+                <VBox prefHeight="70.0" prefWidth="802.0" style="-fx-background-color: #D2F1CF;" VBox.vgrow="ALWAYS">
+                    <children>
+                        <HBox prefHeight="70.0" prefWidth="802.0">
+                            <children>
+                                <HBox prefHeight="70.0" prefWidth="110.0" />
+                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                                <HBox layoutX="120.0" layoutY="10.0" prefHeight="70.0" prefWidth="110.0" />
+                                <HBox prefHeight="70.0" prefWidth="140.0">
+                                    <children>
+                                        <Label prefHeight="61.0" prefWidth="138.0" text="Modifier mes accréditations" textAlignment="CENTER" underline="true" wrapText="true">
+                                            <HBox.margin>
+                                                <Insets top="5.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="70.0" prefWidth="110.0" />
+                                <HBox prefHeight="70.0" prefWidth="110.0" />
+                                <HBox prefHeight="70.0" prefWidth="110.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <HBox prefHeight="70.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+                <VBox fx:id="changeP" prefHeight="560.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox prefHeight="80.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                        <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXPasswordField fx:id="pwdUsr" prefHeight="34.0" promptText="Entrer votre mot de passe" unFocusColor="#144e25">
+                           <padding>
+                              <Insets left="125.0" right="125.0" />
+                           </padding>
+                           <font>
+                              <Font name="Inter Regular" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="80.0" />
+                           </VBox.margin>
+                        </JFXPasswordField>
+                     </children>
+                        </VBox>
+                        <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                        <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="btnCreatUsr" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #144E25;" text="Valider" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="325.0" top="50.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                        </VBox>
+                        <VBox prefHeight="120.0" prefWidth="802.0" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</HBox>

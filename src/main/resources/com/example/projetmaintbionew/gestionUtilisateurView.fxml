@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestionUtilisateurController">
+<HBox fx:id="change" prefHeight="700.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetmaintbionew.GestionUtilisateurController">
    <children>
       <VBox prefHeight="700.0" prefWidth="802.0" HBox.hgrow="ALWAYS">
          <children>

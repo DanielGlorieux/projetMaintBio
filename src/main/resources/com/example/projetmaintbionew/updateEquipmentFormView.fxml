@@ -80,11 +80,59 @@
       </MenuButton>
       <MenuButton fx:id="modSalleAffMb" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" style="-fx-background-color: #144E25;" text="Salle d'affectation" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="305.0">
          <items>
-            <MenuItem fx:id="miSalleAff1" mnemonicParsing="false" text="Salle1" />
-            <MenuItem fx:id="miSalleAff2" mnemonicParsing="false" text="Salle2" />
-            <MenuItem fx:id="miSalleAff3" mnemonicParsing="false" text="Salle3" />
-            <MenuItem fx:id="miSalleAff4" mnemonicParsing="false" text="Salle4" />
-            <MenuItem fx:id="miSalleAff5" mnemonicParsing="false" text="Salle5" />
+            <MenuItem fx:id="miSalleOp" mnemonicParsing="false" text="Salle d’opération" />
+            <MenuItem fx:id="miSalleReveil" mnemonicParsing="false" text="Salle de réveil" />
+            <MenuItem fx:id="miSalleSterilisation" mnemonicParsing="false" text="Salle de stérilisation" />
+            <MenuItem fx:id="miBureauSUS" mnemonicParsing="false" text="Bureau du SUS" />
+            <MenuItem fx:id="miBureauChefService" mnemonicParsing="false" text="Bureau du chef de service" />
+            <MenuItem fx:id="miBureauMedecin" mnemonicParsing="false" text="Bureau médecin" />
+            <MenuItem fx:id="miBureauAnesthesistes" mnemonicParsing="false" text="Bureau des anesthésistes" />
+            <MenuItem fx:id="miSallePreparationPatients" mnemonicParsing="false" text="Salle de préparation des patients" />
+            <MenuItem fx:id="miSalleGarde" mnemonicParsing="false" text="Salle de garde" />
+            <MenuItem fx:id="miSAS" mnemonicParsing="false" text="SAS" />
+            <MenuItem fx:id="miVestiaire" mnemonicParsing="false" text="Vestiaire" />
+            <MenuItem fx:id="miMagasin" mnemonicParsing="false" text="Magasin" />
+            <MenuItem fx:id="miSalleTravail" mnemonicParsing="false" text="Salle de travail" />
+            <MenuItem fx:id="miBoxAccouchement" mnemonicParsing="false" text="Boxe d’accouchement" />
+            <MenuItem fx:id="miPoolSurveillance" mnemonicParsing="false" text="Pool de surveillance technique" />
+            <MenuItem fx:id="miSallePansement" mnemonicParsing="false" text="Salle de pansement" />
+            <MenuItem fx:id="miBureauSageFemme" mnemonicParsing="false" text="Bureau sage femme" />
+            <MenuItem fx:id="miBureauInfirmier" mnemonicParsing="false" text="Bureau infirmier" />
+            <MenuItem fx:id="miSalleStagiaire" mnemonicParsing="false" text="Salle stagiaire" />
+            <MenuItem fx:id="miSalleStaff" mnemonicParsing="false" text="Salle de staff" />
+            <MenuItem fx:id="miSalleEchographie" mnemonicParsing="false" text="Salle d’échographie" />
+            <MenuItem fx:id="miSalleVidoir" mnemonicParsing="false" text="Salle de vidoir" />
+            <MenuItem fx:id="miSalleNettoyageDesinfection" mnemonicParsing="false" text="Salle de nettoyage et désinfection" />
+            <MenuItem fx:id="miBoxPrematures" mnemonicParsing="false" text="Boxe des prématurés" />
+            <MenuItem fx:id="miSalleHospitalisation" mnemonicParsing="false" text="Salle d’hospitalisation" />
+            <MenuItem fx:id="miSalleObservation" mnemonicParsing="false" text="Salle d’observation" />
+            <MenuItem fx:id="miSoinsInfirmiers" mnemonicParsing="false" text="Soins infirmiers" />
+            <MenuItem fx:id="miSallePremiersSoins" mnemonicParsing="false" text="Salle de premiers soins" />
+            <MenuItem fx:id="miSalleTri" mnemonicParsing="false" text="Salle de tri" />
+            <MenuItem fx:id="miSalleDechoquage" mnemonicParsing="false" text="Salle de déchoquage" />
+            <MenuItem fx:id="miSalleBiochimie" mnemonicParsing="false" text="Salle de biochimie" />
+            <MenuItem fx:id="miSalleHematologie" mnemonicParsing="false" text="Salle d’hématologie" />
+            <MenuItem fx:id="miSalleImmunologie" mnemonicParsing="false" text="Salle d’immunologie" />
+            <MenuItem fx:id="miSalleBiologieMoleculaire" mnemonicParsing="false" text="Salle de biologie moléculaire" />
+            <MenuItem fx:id="miSallePrelevements" mnemonicParsing="false" text="Salle de prélèvements" />
+            <MenuItem fx:id="miSalleBacteriologie" mnemonicParsing="false" text="Salle de bactériologie" />
+            <MenuItem fx:id="miSalleParasitologie" mnemonicParsing="false" text="Salle de parasitologie" />
+            <MenuItem fx:id="miLaverieSterilisation" mnemonicParsing="false" text="Laverie + stérilisation" />
+            <MenuItem fx:id="miSallePreparationMilieuxCulture" mnemonicParsing="false" text="Salle de préparation des milieux de culture" />
+            <MenuItem fx:id="miSalleBanqueSang" mnemonicParsing="false" text="Salle de banque de sang" />
+            <MenuItem fx:id="miSalleOsPoumon" mnemonicParsing="false" text="Salle os/poumon" />
+            <MenuItem fx:id="miSalleMammographiePanoramiqueDentaire" mnemonicParsing="false" text="Salle de mammographie + panoramique dentaire" />
+            <MenuItem fx:id="miSalleTelecommandee" mnemonicParsing="false" text="Salle télécommandée" />
+            <MenuItem fx:id="miSalleManipulation" mnemonicParsing="false" text="Salle de manipulation" />
+            <MenuItem fx:id="miSalleInterpretationGenerale" mnemonicParsing="false" text="Salle d’interprétation générale" />
+            <MenuItem fx:id="miLocalReprographie" mnemonicParsing="false" text="Local reprographie" />
+            <MenuItem fx:id="miSalleScanner" mnemonicParsing="false" text="Salle scanner" />
+            <MenuItem fx:id="miSalleInterpretation" mnemonicParsing="false" text="Salle d’interprétation" />
+            <MenuItem fx:id="miAttenteGrabataires" mnemonicParsing="false" text="Attente malades grabataires" />
+            <MenuItem fx:id="miSalleEchographie1" mnemonicParsing="false" text="Salle d’échographie 1" />
+            <MenuItem fx:id="miSalleEchographie2" mnemonicParsing="false" text="Salle d’échographie 2" />
+            <MenuItem fx:id="miBureauRadiologue" mnemonicParsing="false" text="Bureau radiologue" />
+            <MenuItem fx:id="miSalleIntrusionIRM" mnemonicParsing="false" text="Salle d’intrusion pour IRM" />
          </items>
          <font>
             <Font size="13.3" />
